@@ -1,0 +1,167 @@
+body 
+{ 
+   font-family: 'Trebuchet MS', sans-serif;
+    background-color: tan;
+    color: black;
+}
+
+#background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    overflow: hidden;
+    object-fit: cover;
+  }
+  #video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: grayscale(1);
+    background-color: rgb(227, 133, 10);
+    mix-blend-mode: luminosity;
+  }
+
+
+.name-photo
+{
+    display: flex;
+    flex-direction: row;
+}
+header h1{
+    color: rgb(15, 75, 15);
+    text-shadow: #fff 0px 0px 10px;
+    padding:10px;
+
+
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+
+nav ul li {
+    display: inline;
+    text-align: right;
+    padding: 5vw;
+}
+
+nav ul li a {
+    color: peachpuff;
+    text-decoration: none;
+}
+
+nav ul li a.active {
+    font-weight: bold;
+}
+
+.name-photo img{
+    width: 100px;
+    height: 5%;
+    border-radius: 100%;
+    margin-right: 10px;
+    
+}
+
+.index p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2vw;
+    letter-spacing: 0em;
+    font-family: Roboto Mono;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: .05em;
+    line-height: 1.7em;
+    text-transform: none;
+    text-align: center;
+    margin-top: 8%;
+
+}
+
+.index h3{
+ font-size: 3vw;
+ font-style: italic;
+ font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+ color: green;
+ text-shadow: black 0px 0px 10px;
+ margin-top: 6%;
+ 
+
+}
+
+/*ABOUT ME PAGE*/
+
+section.about-me{
+    display: grid;
+    flex: flex;
+    gap: 10px;
+    grid-auto-rows: min-content;
+    grid-template-columns: repeat(2, minmax(30px, 1fr));
+    grid-template-rows: repeat(2, min-content);
+    height: fit-content;
+    justify-content: center;
+    align-self: center;
+    justify-self: center;
+    align-items: center;
+    justify-items: center;
+    overflow: hidden;
+    padding: 10px;
+    
+
+ 
+}
+
+.about-me img{
+    width: 200px;
+    height: 200px;
+    margin-top: 8%;
+    margin-left: 10%;
+}
+
+#about-me h3{
+    font-size: 3vw;
+    font-style: italic;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: green;
+    text-shadow: black 0px 0px 10px;
+    margin-top: 2%;
+    
+    
+   
+   }
+   
+   #about-me h2{
+       font-size: 3vw;
+       font-style: italic;
+       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+       color: green;
+       text-shadow: black 0px 0px 10px;
+       margin-top: 1%;
+   }
+
+   .passion .img1, .img3{
+    filter: grayscale(1);
+    mix-blend-mode: luminosity;
+    
+   
+   }
+   .passion figure{
+   display: flex;
+   justify-content: center;
+
+   }
+   .passion img{
+    margin: 20px;
+   }
