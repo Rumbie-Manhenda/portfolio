@@ -102,6 +102,11 @@ nav ul li a.active {
 }
 
 /*ABOUT ME PAGE*/
+main .about-me
+{
+    background-color: antiquewhite;
+   
+}
 
 section.about-me{
     display: grid;
@@ -119,14 +124,23 @@ section.about-me{
     overflow: hidden;
     padding: 10px;
     
-
  
 }
+.section1 p{
+    font-size: 16px;
+    color: #333;
+    font-family: playfair display, serif;
+    line-height: 1.6em;
 
-.about-me img{
+}
+.about-me img {
+    width: 100%;
+    height: fit-content;
+}
+.passion img{
     width: 200px;
     height: 200px;
-    margin-top: 8%;
+    margin-top: 3%;
     margin-left: 10%;
 }
 
@@ -138,30 +152,95 @@ section.about-me{
     text-shadow: black 0px 0px 10px;
     margin-top: 2%;
     
-    
    
    }
-   
+   #about-header h1{
+    margin-left: 20px;
+   }
+
+
    #about-me h2{
        font-size: 3vw;
        font-style: italic;
        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
        color: green;
        text-shadow: black 0px 0px 10px;
-       margin-top: 1%;
+       margin-left: 10px;
+      
    }
 
-   .passion .img1, .img3{
+   .journey .img1{
     filter: grayscale(1);
     mix-blend-mode: luminosity;
     
    
    }
-   .passion figure{
+   .journey .img2{
+  
+    background-color: green;
+    
+    mix-blend-mode:color-burn
+    
+   
+   }
+   .journey figure{
    display: flex;
    justify-content: center;
 
    }
-   .passion img{
+   .journey img{
     margin: 20px;
    }
+
+   #about-header
+   {
+    
+     align-items: center;
+     padding-bottom: 30%;
+     background-image: url("patty.jpg");
+     
+     background-size:cover;
+     background-position: center;
+     background-repeat: no-repeat;
+     border-color: black;
+     border-width: 5px;
+
+   }
+
+   #about-header nav ul li a {
+    color: rgb(11, 11, 11);
+    text-decoration: none;
+}
+   
+.section2 {
+    display: flex;
+    padding: 20px;
+    background-color:antiquewhite
+   
+  }
+  .section2 p {
+    font-size: 16px;
+    color: #333;
+    padding-top: 70px;
+    padding-right: 70px;
+    font-family: playfair display, serif;
+    line-height: 1.6em;
+ 
+  }
+
+  .section2 h2
+  {
+    padding-left: 15px;
+  }
+
+  .section2 img {
+    width: 350px;
+    height: 400px;
+    margin-right: 20px;
+    border-top-left-radius: 30%;
+    border-bottom-right-radius: 35%;
+  }
+  .section2 .left, .section2 .right {
+    flex: 1;
+    
+}
