@@ -27,7 +27,7 @@ body
     left: 50%;
     transform: translate(-50%, -50%);
     filter: grayscale(1);
-    background-color: rgb(227, 133, 10);
+    background-color: palevioletred;
     mix-blend-mode: luminosity;
   }
 
@@ -458,3 +458,35 @@ section.about-me{
 .contact-section button:hover {
     background-color: #c8a5a5;
 }
+.footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #f5f5f5;
+    border-top: 2px solid #817777;
+    box-shadow: #ccc 0 0 10px;
+}
+
+.icons {
+    list-style-type: none;
+    padding: 0;
+}
+
+.icons li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.icons li a {
+    display: block;
+}
+
+.icons li img {
+    vertical-align: middle;
+}
+
+.footer p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
