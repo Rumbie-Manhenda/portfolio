@@ -1,11 +1,11 @@
-// let vid = document.getElementById("background-video");
-// vid.onload();
-// vid.playbackRate = 0.1;
+ let vid = document.getElementById("background-video");
+vid.onload();
+vid.playbackRate = 0.1;
 
-// let message = ()=>
-//     {
-//         alert(confirm, "Message sent!");
-//     }
+let message = ()=>
+    {
+        alert(confirm, "Message sent!");
+    }
 
 //     const express = require('express');
 //     const bodyParser = require('body-parser');
