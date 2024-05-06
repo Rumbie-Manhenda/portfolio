@@ -171,6 +171,50 @@ section.about-me{
       
    }
 
+   .circle2_a
+   {
+       border-bottom-width: 1px;
+       border-color: black;
+       border-left-width: 1px;
+       border-right-width: 1px;
+       border-style: solid;
+       border-top-width: 1px;
+       border-radius: 100%;
+       flex: none;
+       height: 280px;
+       opacity: 0.3;
+       overflow: hidden;
+       position:absolute;
+       left: 790px;
+       width: 560px;
+       will-change: var(transform);
+       transform: rotate(-134deg);
+       translate: 0px, 0px;
+       z-index: 1;
+      
+   }
+   .circle3_a
+   {
+       border-bottom-width: 1px;
+       border-color: black;
+       border-left-width: 1px;
+       border-right-width: 1px;
+       border-style: solid;
+       border-top-width: 1px;
+       border-radius: 100%;
+       flex: none;
+       height: 280px;
+       opacity: 0.3;
+       overflow: hidden;
+       position:absolute;
+       left: 790px;
+       width: 560px;
+       will-change: var(transform);
+       transform: rotate(134deg);
+       translate: 0px, 0px;
+       z-index: 1;
+   }
+
    .journey .img1{
     
     mix-blend-mode: luminosity;
@@ -188,7 +232,7 @@ section.about-me{
    .journey figure{
    display: flex;
    justify-content: center;
-   padding-top: 70px;
+   padding-top: 50px;
 
 
    }
@@ -226,7 +270,7 @@ section.about-me{
   .section2 p {
     font-size: 16px;
     color: #333;
-    padding-top: 70px;
+    padding-top: 10px;
     padding-right: 70px;
     font-family: playfair display, serif;
     line-height: 1.6em;
@@ -379,18 +423,18 @@ section.about-me{
      border-top-width: 1px;
      border-radius: 100%;
      flex: none;
-     height: 309px;
+     height: 280px;
      opacity: 0.3;
      overflow: hidden;
      position:absolute;
-     right: 0;
-     bottom: 300;
+     bottom: 240px;
      left: 560px;
-     width: 580px;
+     width: 560px;
      will-change: var(transform);
      transform: rotate(-134deg);
      translate: 0px, 0px;
      z-index: 1;
+    
  }
  .circle3
  {
@@ -402,14 +446,13 @@ section.about-me{
      border-top-width: 1px;
      border-radius: 100%;
      flex: none;
-     height: 309px;
+     height: 280px;
      opacity: 0.3;
      overflow: hidden;
      position:absolute;
-     right: 0;
-     bottom: 300;
+     bottom: 240px;
      left: 560px;
-     width: 580px;
+     width: 560px;
      will-change: var(transform);
      transform: rotate(134deg);
      translate: 0px, 0px;
@@ -505,7 +548,61 @@ section.about-me{
     margin-top: 30px;
    
 }
+.projects-h1 .circle
 
+{
+    border-bottom-width: 1px;
+    border-color: black;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-style: solid;
+    border-top-width: 1px;
+    border-radius: 100%;
+    flex: none;
+    height: 70px;
+    opacity: 0.3;
+    overflow: hidden;
+    position:absolute;
+    bottom:265px;
+    left: 770px;
+    width: 145px;
+    will-change: var(transform);
+    transform: rotate(134deg);
+    translate: 0px, 0px;
+    z-index: 1;
+}
+
+.projects-h1 .circle_b
+
+{
+    border-bottom-width: 1px;
+    border-color: black;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-style: solid;
+    border-top-width: 1px;
+    border-radius: 100%;
+    flex: none;
+    height: 70px;
+    opacity: 0.3;
+    overflow: hidden;
+    position:absolute;
+    bottom: 265px;
+    left: 770px;
+    width: 145px;
+    will-change: var(transform);
+    transform: rotate(-134deg);
+    translate: 0px, 0px;
+    z-index: 1;
+}
+
+.projects-nav-list
+{
+    position: relative;
+    left: 110px;
+    bottom: 80px;
+    font: bold 1.5em "Gloock", "Gloock Placeholder", serif;
+}
 .projects-section1 h4{
     position: relative;
     top: 0px;
@@ -515,6 +612,8 @@ section.about-me{
 {
     text-align: center;
     font-size: 5vw;
+    margin-left: 200px;
+    
 }
 
  .projects
@@ -524,8 +623,18 @@ section.about-me{
    
 }
 
+.milestones
+{
+   text-align: center; 
+    
+}
+
 .milestones h2{
-    padding: 20px 20px 0px 40px;
+    font-size: 2.2em;
+    text-align: center;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    margin-left: 120px;
 }
 .milestones h5{
     margin-left: 40px;
@@ -683,4 +792,83 @@ footer {
     background-color: #f5f5f5;
     border-top: 2px solid #817777;
     box-shadow: #ccc 0 0 10px;
+}
+
+.skills-container
+{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.skills-container .left, .skills-container .right, .skills-container .center
+{
+   
+    border-bottom-width: 1px;
+    border-color: rgba(0, 0, 0, .05);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-style: solid;
+    border-top-width: 1px;
+    align-content: left;
+    align-items: left;
+    background-color:  #ffe3e0;
+    border-radius: 20px ;
+    box-shadow: 0 10px 20px -20px #00000040;
+    display: flex;
+    flex: 1 0 0px;
+    border-width: 2px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    overflow: visible;
+    margin: 40px;
+    position: relative;
+    width: 1px;
+
+
+}
+
+.skills-container ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+.skills-container li{
+    padding: 5px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #ccc;
+}
+.skills h2{
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 50px;
+   
+}
+
+.skills-container .rank95, .skills-container .rank90, .skills-container .rank85, .skills-container .rank80 {    
+    display: inline-block;
+    background-color: #e17575;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+
+
+.skills-container  .rank95 {
+    width: calc(95% - 25px);
+}
+
+.skills-container  .rank90 {
+    width: calc(90% - 55px);
+}
+.skills-container .rank85 {
+    width: calc(85% - 75px);
+}
+
+.skills-container .rank80 {
+    width: calc(80% - 95px);
 }
