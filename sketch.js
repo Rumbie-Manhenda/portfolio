@@ -1,60 +1,62 @@
- let vid = document.getElementById("background-video");
-vid.onload();
-vid.playbackRate = 0.1;
+const express = require('express');
+const mysql = require('mysql');
+const app = express();
+const multer = require('multer');
+const upload = multer();
+const PORT = process.env.PORT || 3000;
 
-let message = ()=>
-    {
-        alert(confirm, "Message sent!");
+// Database connection configuration
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'Emmanuel@7',
+    database: 'portfolio_messages'
+});
+
+// Connect to MySQL database
+db.connect((err) => {
+    if (err) {
+        throw err;
+    }
+    console.log('Connected to MySQL database');
+});
+
+// Body parser middleware
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(upload.array());
+
+// Enable CORS
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
+
+// Route to handle form submissions
+app.post('/submit', (req, res) => {
+    const { email, message } = req.body;
+    const timestamp = new Date();
+    
+    
+    if (!email || !message) {
+        return res.status(400).send('Email and message are required');
     }
 
-//     const express = require('express');
-//     const bodyParser = require('body-parser');
-//     const nodemailer = require('nodemailer');
-    
-//     const app = express();
-//     const PORT = process.env.PORT || 3000;
-    
-//     // Body parser middleware
-//     app.use(bodyParser.urlencoded({ extended: false }));
-//     app.use(bodyParser.json());
-    
-//     // POST route to handle form submission
-//     app.post('/send-email', (req, res) => {
-//         const { email, message } = req.body;
-    
-//         // Create a transporter
-//         const user_email = document.getElementById("user-email").value;
-//         const my_email= 'pattymcharis15@gmail.com';
-//         const transporter = nodemailer.createTransport({
-//             service: 'gmail', 
-//             auth: {
-//                 user: user_email,
-//                 pass: "<PASSWORD>"
-//             }
-//         });
-    
-//         // Email content
-//         const mailOptions = {
-//             from: user_email,
-//             to: my_email,
-//             subject: 'New Message from Contact Form',
-//             text: `Email: ${email}\nMessage: ${message}`
-//         };
-    
-//         // Send email
-//         transporter.sendMail(mailOptions, (error, info) => {
-//             if (error) {
-//                 console.log(error);
-//                 res.status(500).send('Error sending email');
-//             } else {
-//                 console.log('Email sent: ' + info.response);
-//                 res.status(200).send('Email sent successfully');
-//             }
-//         });
-//     });
-    
-//     // Start the server
-//     app.listen(PORT, () => {
-//         console.log(`Server is running on port ${PORT}`);
-//     });
-    
+    const sql = 'INSERT INTO messages (email, timestamp, message) VALUES (?, ?, ?)';
+    db.query(sql, [email, timestamp, message], (err, result) => {
+        if (err) {
+            console.error('Error inserting message:', err);
+            res.status(500).send('Error inserting message into database');
+        } else {
+            console.log("Message sent!");
+            res.status(200).send("Message sent successfully !");
+        }
+    });
+});
+
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
