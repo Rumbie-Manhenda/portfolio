@@ -110,14 +110,14 @@
             Thank you for considering sharing your thoughts!<b>):</b></h2>
         <fieldset>
             <legend>Recommendations</legend>
-            <form action="/send-email" method="post">
+            <form  action="/submit_rec" method="post">
                 <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Email"><br/><br/>
+                <input type="email" id="email" name="email_rec" placeholder="Email"><br/><br/>
                 <label for="name">Name</label>
-                <input type="text" id="name" placeholder="Full Name"><br/><br/>
+                <input type="text" id="name" name="name_rec" placeholder="Full Name"><br/><br/>
                 <label for="message">Your Recommendation Message</label>
-                <textarea id="message" placeholder="Your message"></textarea><br/><br/>
-                <button type="submit">Submit</button>
+                <textarea id="message" placeholder="Your message" name="message_rec"></textarea><br/><br/>
+                <button type="submit" name="submit">Submit</button>
             </form>
         </fieldset>
     </section>
@@ -131,5 +131,35 @@
     </ul>
     <p><b>All rights reserved 2024 - Patricia Manhenda</b></p>
    </footer>
+   <script>
+
+    const form_rec = document.querySelector('form');
+    form_rec.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData_rec = new FormData(form_rec);
+        try {
+            console.log('Sending form data:', formData_rec);
+            const response_rec = await fetch('http://localhost:3000/submit_rec', {
+                method: 'POST',
+                body: formData_rec
+            });
+            console.log('Server response status:', response_rec.status);
+            const data_rec = await response_rec.text();
+            console.log('Server response data:', data_rec);
+            if (response_rec.ok) {
+                alert(data_rec);
+                form_rec.reset();
+            } else {
+                throw new Error(`Failed to submit message: ${data_rec}`);
+            }
+        } catch (error) {
+            console.error('Error submitting message:', error);
+            alert('Error submitting message. Please try again later.');
+        }
+    });
+    
+    
+   
+</script>
 </body>
 </html>

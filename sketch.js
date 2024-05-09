@@ -33,13 +33,11 @@ app.use((req, res, next) => {
     next();
 });
 
-
-// Route to handle form submissions
+// Route to handle form submissions for messages
 app.post('/submit', (req, res) => {
     const { email, message } = req.body;
     const timestamp = new Date();
-    
-    
+
     if (!email || !message) {
         return res.status(400).send('Email and message are required');
     }
@@ -52,6 +50,27 @@ app.post('/submit', (req, res) => {
         } else {
             console.log("Message sent!");
             res.status(200).send("Message sent successfully !");
+        }
+    });
+});
+
+// Route to handle form submissions for recommendations
+app.post('/submit_rec', (req, res) => {
+    const { email_rec, message_rec, name_rec } = req.body;
+    const timestamp_rec = new Date();
+
+    if (!email_rec || !message_rec || !name_rec) {
+        return res.status(400).send('Email, Name and message are required');
+    }
+
+    const sql_rec = 'INSERT INTO recommendations (email_rec, name_rec, timestamp_rec, message_rec) VALUES (?, ?, ?, ?)';
+    db.query(sql_rec, [email_rec, name_rec, timestamp_rec, message_rec], (err, result) => {
+        if (err) {
+            console.error('Error inserting recommendation:', err);
+            res.status(500).send('Error inserting recommendation into database');
+        } else {
+            console.log("Recommendation sent!");
+            res.status(200).send("Recommendation sent successfully !");
         }
     });
 });
