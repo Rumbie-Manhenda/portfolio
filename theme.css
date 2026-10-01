@@ -1,0 +1,113 @@
+/* ==========================================================================
+   STUDIO KILN — theme foundation
+   Theme Pack · Collection: pro · Family: Ceramicist · Intensity: restrained
+   Re-brand by changing only --tp-h (0-360) on the element carrying data-theme.
+   Every component in style.css consumes var(--tp-*) exclusively.
+   ========================================================================== */
+
+@keyframes tp-pop{0%{transform:scale(.88);opacity:0}62%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+@keyframes tp-up{from{transform:translateY(var(--tp-reveal-dist,16px));opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes tp-down{from{transform:translateY(-16px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes tp-sheet{from{transform:translateY(102%)}to{transform:translateY(0)}}
+@keyframes tp-fade{from{opacity:0}to{opacity:1}}
+@keyframes tp-wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes tp-curtain{from{clip-path:inset(100% 0 0 0);transform:translateY(var(--tp-reveal-dist,16px))}to{clip-path:inset(0 0 0 0);transform:translateY(0)}}
+@keyframes tp-rise{from{clip-path:inset(0 0 100% 0);transform:translateY(var(--tp-reveal-dist,16px))}to{clip-path:inset(0 0 0 0);transform:translateY(0)}}
+@keyframes tp-blur-in{from{opacity:0;filter:blur(16px);transform:scale(1.05) translateY(var(--tp-reveal-dist,16px))}to{opacity:1;filter:blur(0);transform:scale(1) translateY(0)}}
+@keyframes tp-glitch{0%{opacity:0;transform:translate3d(-6px,0,0);clip-path:inset(40% 0 38% 0)}18%{opacity:1;transform:translate3d(5px,0,0);clip-path:inset(12% 0 62% 0)}36%{transform:translate3d(-3px,0,0);clip-path:inset(68% 0 6% 0)}54%{transform:translate3d(2px,0,0);clip-path:inset(0 0 0 0)}72%{transform:translate3d(-1px,0,0)}100%{opacity:1;transform:none;clip-path:inset(0 0 0 0)}}
+@keyframes tp-tape{from{opacity:0;transform:rotate(-9deg) translateY(var(--tp-reveal-dist,16px)) scale(.95)}to{opacity:1;transform:rotate(var(--tp-img-tilt,0deg)) translateY(0) scale(1)}}
+@keyframes tp-zoom{from{transform:scale(1.16)}to{transform:scale(1)}}
+@keyframes tp-bar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes tp-shake{10%,90%{transform:translateX(-2px)}30%,70%{transform:translateX(3px)}50%{transform:translateX(-4px)}}
+@keyframes tp-pulse{0%,100%{opacity:1}50%{opacity:.42}}
+@keyframes tp-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
+@keyframes tp-shimmer{from{background-position:-160% 0}to{background-position:260% 0}}
+@keyframes tp-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes tp-spin{to{transform:rotate(360deg)}}
+@keyframes tp-blink{50%{opacity:0}}
+@keyframes tp-tilt{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+@keyframes tp-drift{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(4%,-3%,0) scale(1.12)}100%{transform:translate3d(0,0,0) scale(1)}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;transition-duration:1ms!important}}
+
+/* --- kiln ambience: the slow glow of a cooling kiln -------------------- */
+@keyframes kiln-glow{0%,100%{opacity:.5;transform:translate3d(0,0,0) scale(1)}50%{opacity:.85;transform:translate3d(2%,-2%,0) scale(1.08)}}
+@keyframes kiln-drip{from{background-position:0 0}to{background-position:0 220px}}
+@keyframes kiln-track{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* --- runtime primitives ------------------------------------------------- */
+.tp-web-stage{position:relative;isolation:isolate;overflow:hidden;animation:var(--tp-3d-web,none);transform-origin:50% 50%}
+.tp-web-stage>.tp-fx{inset:-20%}
+.tp-fx{position:absolute;inset:-40%;z-index:-1;pointer-events:none;background:var(--tp-fx);background-size:var(--tp-fx-size);opacity:var(--tp-fx-op);mix-blend-mode:var(--tp-fx-blend);transform:var(--tp-fx-tf);animation:var(--tp-fx-anim)}
+.tp-screen{position:relative;isolation:isolate;overflow:hidden}
+.tp-stage{transform:var(--tp-3d);animation:var(--tp-3d-anim);transform-style:preserve-3d}
+
+/* ==========================================================================
+   TOKENS
+   ========================================================================== */
+[data-theme="studio-kiln"]{
+  --tp-h:50;
+  --tp-fx:none;--tp-fx-size:auto;--tp-fx-anim:none;--tp-fx-op:0;--tp-fx-blend:normal;--tp-fx-tf:none;
+  --tp-3d:none;--tp-3d-anim:none;--tp-3d-web:none;
+  --tp-dur-slow:620ms;--tp-stagger:80ms;--tp-reveal:tp-up;--tp-reveal-dist:20px;
+  --tp-img-r:40% 40% 16px 16px;--tp-img-frame:none;--tp-img-sh:none;
+  --tp-img-filter:saturate(.9) sepia(.06);--tp-img-overlay-op:0;--tp-img-blend:normal;
+  --tp-img-tilt:0deg;--tp-img-ar:4 / 5;
+  --tp-bg:#efe6dc;--tp-canvas:#efe6dc;--tp-surf:#f8f2ea;--tp-surf-2:#e2d6c7;
+  --tp-ink:#2b221b;--tp-mute:#766657;
+  --tp-acc:oklch(0.56 0.1 calc(var(--tp-h) + 0));
+  --tp-acc-2:oklch(0.6 0.06 calc(var(--tp-h) + 120));
+  --tp-acc-ink:#f8f2ea;--tp-line:#d9cbba;
+  --tp-grad:linear-gradient(135deg, oklch(0.56 0.1 calc(var(--tp-h) + 0)), oklch(0.6 0.06 calc(var(--tp-h) + 120)));
+  --tp-r:22px;--tp-r-sm:14px;--tp-r-lg:30px;--tp-r-btn:99px;
+  --tp-sh:0 12px 30px rgba(20,20,40,.12);--tp-sh-sm:0 4px 12px rgba(20,20,40,.09);
+  --tp-bw:1px;
+  --tp-font-display:'Newsreader', Georgia, serif;
+  --tp-font-body:'Figtree', system-ui;
+  --tp-font-mono:'JetBrains Mono', monospace;
+  --tp-w-display:500;--tp-track-display:-0.01em;--tp-case-display:none;
+  --tp-hero:70px;--tp-dur:220ms;--tp-ease:cubic-bezier(.22,1,.36,1);--tp-press:0.98;
+  --tp-tex:none;--tp-blur:none;
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+*,*::before,*::after{box-sizing:border-box}
+
+html{-webkit-text-size-adjust:100%}
+
+body{
+  margin:0;
+  background:var(--tp-bg);
+  color:var(--tp-ink);
+  font-family:var(--tp-font-body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+h1,h2,h3,h4{
+  font-family:var(--tp-font-display);
+  font-weight:var(--tp-w-display);
+  letter-spacing:var(--tp-track-display);
+  text-transform:var(--tp-case-display);
+  line-height:1.12;
+  margin:0;
+}
+
+p{margin:0}
+
+a{color:inherit;text-decoration:none}
+
+img{max-width:100%;display:block}
+
+ul{margin:0;padding:0;list-style:none}
+
+button,input,textarea,select{font:inherit;color:inherit}
+
+:focus-visible{outline:3px solid var(--tp-acc);outline-offset:3px;border-radius:6px}
+
+::selection{background:var(--tp-acc);color:var(--tp-acc-ink)}
+
+.tp-fx{pointer-events:none}

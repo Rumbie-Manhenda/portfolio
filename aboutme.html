@@ -1,173 +1,397 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="studio-kiln">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Me</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Patricia Manhenda</title>
+  <meta name="description" content="Get to know Patricia Manhenda: from Zimbabwe to Greece, the UK and Helsinki, and the path that led her into machine learning.">
+
+  <link rel="icon" href="star.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Figtree:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <header id="about-header">
-        <div class="name-photo">
-            <h1 >PATRICIA</h1>
-        </div>
-         <nav class="nav-list">
-            <ul>
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./projects.html">My projects</a></li>
-            </ul>
-         </nav>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="kiln-bg" aria-hidden="true"></div>
+
+  <header class="site-nav">
+    <div class="nav-pill">
+      <a class="nav-pill__mark" href="index.html">
+        <span aria-hidden="true"></span>
+        Patricia Manhenda
+      </a>
+
+      <nav class="nav-pill__links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="aboutme.html" aria-current="page">About</a>
+        <a href="coverletter.html">Cover letter</a>
+      </nav>
+
+      <a class="nav-pill__cta" href="RUMBIDZAI_MANHENDA_CV2024.pdf" target="_blank" rel="noopener">Download CV</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Toggle navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <nav class="nav-drawer" id="nav-drawer" data-open="false" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="aboutme.html">About</a>
+    <a href="coverletter.html">Cover letter</a>
+    <a href="RUMBIDZAI_MANHENDA_CV2024.pdf" target="_blank" rel="noopener">Download CV</a>
+  </nav>
+
+  <main id="main">
+
+    <!-- =========================== PAGE HEAD ======================== -->
+    <header class="page-head shell">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <span>About</span>
+      </nav>
+
+      <div class="page-head__row">
+        <h1>The face behind <em>the work</em>.</h1>
+        <p class="page-head__aside">Zimbabwe → Greece → the UK → Helsinki</p>
+      </div>
+
+      <p class="lede">
+        Want to know more than a list of technologies? Here is the story — where I come from,
+        what set me alight, and what I am like to work with.
+      </p>
     </header>
-    <main id="about-me">
-        <section class="about-me">
-            <div class="section1">
-            <h2>Get To Know the Portfolio Owner!</h2>
-            <p>Want to know more about the face behind this portfolio? Well, let me
-                 paint you a picture. I'm a 24-year-old from
-                  the vibrant streets of Zimbabwe. My journey through academia has
-              been nothing short of an adventure, taking me from the historical marvels of Europe, through Greece and the UK,
-                 and currently residing in Helsinki, Finland.</p>
-                 <h5>My Passion !</h5>
-                 <div class="circle"></div>
-                 <p>Talking about passion, what is it that sets my soul on fire? Well, 
-                    It's got to be programming and tech! There's something magical about
-                     deciphering the mysteries of code, like unlocking a treasure chest
-                      of endless possibilities. Whether it's mastering new programming
-                       languages or diving into the fascinating world of AI and ML,
-                     I'm always up for the challenge. <br/><br/> In addition to my passion for technology,
-                      I excel as a problem-solver, adept at time management and effective communication. 
-                     Whether working independently or as part of a team, I bring a high level of proficiency and adaptability to any task or project,
-                      ensuring successful outcomes.
-                </p>
-                <h5>Besides Binary</h5>
-                <p>Apart from bytes and bits, I treasure my commitment to honesty and transparency. My optimistic
-                     approach towards life and my compassionate demeanor make up my unique personality.
-                    I am a firm believer in Christ and an introvert who treats software updates like mini-holidays</p>
-                </div>
-                <img src="https://trinitycathedralpgh.org/wp-content/uploads/2022/08/Artboard-6.svg" alt="star"/>
-        </section>
-   
-        <section class="journey">
-           
-            <figure>
-            <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f320.svg" alt="fire" width="50" height="120" class="img1" >
-            <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f320.svg" alt="fire" width="70" height="120" class="img1" >
-            <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f320.svg" alt="fire" width="100" height="120" class="img1" >
 
-            <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f320.svg" alt="fire" width="140" height="140" class="img2" >
+    <!-- ========================= GET TO KNOW ME ===================== -->
+    <section class="section section--tight">
+      <div class="shell split">
+        <div class="split__media" data-reveal="theme" data-reveal-index="0">
+          <div class="stack">
+            <div class="photo">
+              <img src="patty_4.jpg" alt="Patricia Manhenda" width="900" height="1200">
+            </div>
+            <div class="photo">
+              <img src="patty_3.jpg" alt="Patricia Manhenda in Helsinki" loading="lazy">
+            </div>
+            <div class="photo">
+              <img src="patty_22.jpg" alt="Patricia Manhenda at work" loading="lazy">
+            </div>
+          </div>
+        </div>
 
-            <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f320.svg" alt="fire" width="100" height="120" class="img1" >
-            <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f320.svg" alt="fire" width="70" height="120" class="img1" >
-            <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f320.svg" alt="fire" width="50" height="120" class="img1" >
+        <div class="split__copy" data-reveal="theme" data-reveal-index="1">
+          <p class="eyebrow">Get to know the owner</p>
+          <h2>I grew up in Zimbabwe, and I have been moving toward hard problems ever since.</h2>
+
+          <p class="body-copy">
+            My journey through academia has been an adventure rather than a straight line —
+            from the vibrant streets of Zimbabwe, through the historical marvels of Europe,
+            to Greece and the UK for study, and now to Helsinki, Finland, where I live.
+          </p>
+
+          <p class="body-copy">
+            Along the way I learned that the part I enjoy most is not the certificate at the
+            end. It is the moment a messy, unfamiliar problem finally gives way.
+          </p>
+
+          <div class="cell__list" style="margin-top:10px">
+            <span class="tag">Zimbabwean</span>
+            <span class="tag">Studied in the UK</span>
+            <span class="tag">Living in Finland</span>
+            <span class="tag">Poet</span>
+            <span class="tag">Volunteer</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ PASSION ========================= -->
+    <section class="section section--sunken">
+      <div class="shell">
+        <div class="section__head" data-reveal="theme" data-reveal-index="0">
+          <p class="eyebrow">My passion</p>
+          <h2 class="title-l">What sets my soul on fire.</h2>
+          <p class="lede">
+            Programming and tech — and specifically the strange, satisfying work of taking a
+            model apart until I understand why it is wrong.
+          </p>
+        </div>
+
+        <div class="bento">
+          <article class="cell cell--wide" data-reveal="theme" data-reveal-index="0">
+            <p class="cell__label">The work itself</p>
+            <h3 class="title-m">Unlocking the treasure chest.</h3>
+            <p class="body-copy">
+              There is something magical about deciphering the mysteries of code — like opening
+              a chest of endless possibilities. Whether it is mastering a new language or diving
+              into the fascinating world of AI and machine learning, I am always up for the challenge.
+            </p>
+          </article>
+
+          <article class="cell" data-reveal="theme" data-reveal-index="1">
+            <p class="cell__label">How I work</p>
+            <div class="cell__list" style="margin-top:6px">
+              <span class="tag">Problem-solving</span>
+              <span class="tag">Time management</span>
+              <span class="tag">Communication</span>
+              <span class="tag">Adaptability</span>
+            </div>
+            <p class="body-copy" style="margin-top:12px">
+              Independently or in a team, I bring the same level of care and follow-through.
+            </p>
+          </article>
+
+          <article class="cell cell--accent" data-reveal="theme" data-reveal-index="2">
+            <p class="cell__label">Besides binary</p>
+            <h3 class="title-s" style="margin-top:6px">Honesty, transparency, and a stubborn optimism.</h3>
+            <p class="body-copy" style="margin-top:8px">
+              I am a firm believer in Christ, an introvert, and someone who treats software
+              updates like mini-holidays.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+<!-- ============================ JOURNEY ========================= -->
+    <section class="section">
+      <div class="shell">
+        <div class="split split--reverse">
+          <div class="split__media" data-reveal="theme" data-reveal-index="0">
+            <figure class="quote-band">
+              <div class="quote-band__img" aria-hidden="true">
+                <img src="patty_1.jpg" alt="" loading="lazy">
+                <div class="quote-band__scrim"></div>
+              </div>
+              <div class="quote-band__inner">
+                <span class="tag">The turning point</span>
+                <blockquote>
+                  “If we continue to develop our technology without wisdom or prudence,
+                  our servant may prove to be our executioner.”
+                </blockquote>
+                <figcaption>Omar Bradley</figcaption>
+              </div>
             </figure>
-<div class="section2">
-    <div class="left">
-        <h2>Journey So Far</h2>
-        <img src="./patty_fin.jpg" alt="my photo" width="200px" height="200px">
-    </div>
-    <div class="circle2_a">
-    </div>
-    <div class="circle3_a">
-    </div>
-    <div class="right">
-        <p>My journey into the world of technology is filled with twists, turns, and
-        moments of enlightenment. Initially skeptical about its impact on morality and
-        values,
-        a quote by Omar Bradley <em>If we continue to develop our technology without
-        wisdom or prudence, our servant may prove to be our executioner.</em> shifted my
-        perspective, revealing technology as a force for good.
-        <br /><br />Driven by curiosity, I delved into Computer Science, excelling in
-        academia and exploring front-end web development and UX/UI design. It wasn't
-        until
-        encountering Artificial Intelligence (AI) that I found my true passion. Despite
-        setbacks, including struggles with mental health, I persevered, finding strength
-        in volunteering and poetry.
-        <br /> <br />Thanks to scholarships like the Science, Technology, Engineering,
-        and Mathematics scholarship
-        program and the Varadi Scholarship, I was able to pursue my dreams of higher
-        education, enabling me to earn a Bachelor's degree
-        in Computer Science. Fueled by a thirst for knowledge and a desire to impact the
-        world positively, my journey continues.
-        </p>
+          </div>
 
-    </div>
-</div>
-        <section class="contactme">
-     
-            <h3>Dive Deeper</h3>
-            <div class="contact-container">
-                <div class="left">
-                    <img src="https://media.istockphoto.com/id/1359164204/fi/valokuva/rajattu-muotokuva-kahdesta-vieh%C3%A4tt%C3%A4v%C3%A4st%C3%A4-nuoresta-naisopiskelijasta-jotka-juhlivat.jpg?s=612x612&w=0&k=20&c=w2V2VWOgE4Bymzaa1B0mob2CprpgUMEgm1D1eiJEmZY=" alt = "university of london logo">  
-                    <h4>My University</h4>
-                    <a href="https://www.london.ac.uk/" target="_blank"><p>University of London</p></a> 
-                </div>
-                <div class="center">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Nationalhelden-Denkmal_%2840153835081%29.jpg/1200px-Nationalhelden-Denkmal_%2840153835081%29.jpg" alt="my country" width="100px" height="100px">    
-                    <h4>My Country: Zimbabwe</h4>
-                    <a href="https://zimbabwetourism.net/destinations/" target="_blank"><p>Where i came from</p></a> 
-                </div>
-                <div class="right">
-                    <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcSYB4QLiulHgrBEckMY-29XKSqNltLIsHrtJnQfa7dduPokorJjHf-0WFvRrSZN6P3ieb_T_M05cnSYtpv83TWqYZ02GvKETlhw2aUx8A"  alt=" photo of Finland" width="100px" height="100px"> 
-                    <h4>Finland</h4>
-                    <a href="https://finland.fi/" target="_blank"><p>Where I am Now</p></a> 
-                </div>
+          <div class="split__copy" data-reveal="theme" data-reveal-index="1">
+            <p class="eyebrow">Journey so far</p>
+            <h2>I started out sceptical about technology. That quote changed the direction of my life.</h2>
+
+            <p class="body-copy">
+              I was uneasy about what technology might do to morality and to people. Reading
+              Omar Bradley made me see the other side of the argument: that technology is a
+              force for good, but only when the people building it bring judgement with them.
+              I decided to be one of those people.
+            </p>
+
+            <p class="body-copy">
+              Driven by curiosity, I went into Computer Science — and did well, exploring
+              front-end web development and UX/UI design along the way. It was not until I met
+              artificial intelligence that I found the thing I actually wanted to spend a
+              career on.
+            </p>
+
+            <p class="body-copy">
+              The path was not smooth. I struggled with my mental health along the way, and
+              found strength in volunteering and in poetry. Scholarships — the Science,
+              Technology, Engineering and Mathematics scholarship programme, and the Varadi
+              Scholarship — made higher education possible, and I earned my Bachelor's degree
+              in Computer Science.
+            </p>
+
+            <p class="body-copy">
+              Fueled by a thirst for knowledge and a wish to leave things better than I found
+              them, the journey continues.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= DIVE DEEPER ======================== -->
+    <section class="section section--sunken">
+      <div class="shell">
+        <div class="section__head" data-reveal="theme" data-reveal-index="0">
+          <p class="eyebrow">Dive deeper</p>
+          <h2 class="title-l">The three places that made me.</h2>
+        </div>
+
+        <div class="place-grid">
+          <article class="place" data-reveal="theme" data-reveal-index="0">
+            <div class="place__mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
             </div>
+            <h3 class="title-s">University of London</h3>
+            <p class="body-copy">
+              BSc Computer Science, specialising in Machine Learning and Neural Networks.
+              First-Class Honours, 2023.
+            </p>
+            <a class="work-card__link" href="https://www.london.ac.uk/" target="_blank" rel="noopener">
+              Visit the university
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </a>
+          </article>
+
+          <article class="place" data-reveal="theme" data-reveal-index="1">
+            <div class="place__mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20z"/></svg>
             </div>
-        </section>
-        <section class="contact-section">
-            <fieldset>
-                <legend>Contact Me</legend>
-                <form action="/submit" method="post">
-                    <label for="email" id="user-email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Email"><br/><br/>
-                    <label for="message" id="user-message">Message</label>
-                    <textarea id="message" name="message" placeholder="Your message"></textarea><br/><br/>
-                    <button type="submit" id="submit" name="submit">Submit</button>
-                </form>
-            </fieldset>
-        </section>
-        
-    </main>
-    <footer class="footer">
-        <ul class="icons">
-            <li><a href="https://www.instagram.com/pattymcharis/"><img src="insta logo.jpg" alt="Instagram logo" width="50" height="50"></a></li>
-            <li><a href="https://www.linkedin.com/in/patricia-manhenda-6818131b9/"><img src="linkedin.png" alt="LinkedIn logo" width="50" height="50"></a></li>
-            <li><a href="https://github.com/Rumbie-Manhenda"><img src="github.png" alt="GitHub logo" width="50" height="50"></a></li>
+            <h3 class="title-s">Zimbabwe</h3>
+            <p class="body-copy">
+              Where I came from — and where I learned to work with whatever is actually
+              available rather than what the textbook assumes.
+            </p>
+            <a class="work-card__link" href="https://zimbabwetourism.net/destinations/" target="_blank" rel="noopener">
+              Discover Zimbabwe
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </a>
+          </article>
+
+          <article class="place" data-reveal="theme" data-reveal-index="2">
+            <div class="place__mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V8l7-5 7 5v13"/><path d="M10 21v-6h4v6"/></svg>
+            </div>
+            <h3 class="title-s">Finland</h3>
+            <p class="body-copy">
+              Where I am now. I hold a valid work permit here, and I am open to relocation
+              with visa sponsorship.
+            </p>
+            <a class="work-card__link" href="https://finland.fi/" target="_blank" rel="noopener">
+              About Finland
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================== CONTACT ========================== -->
+    <section class="section" id="contact">
+      <div class="shell">
+        <div class="grid-2">
+          <div class="gap-lg" data-reveal="theme" data-reveal-index="0">
+            <p class="eyebrow">Contact me</p>
+            <h2 class="title-l">Say hello.</h2>
+            <p class="body-copy">
+              Questions about a project, an opening on your team, or just want to compare
+              notes on machine learning? Write to me here, or email me directly — I read
+              everything and reply properly.
+            </p>
+
+            <dl class="hero__meta" style="margin-top:8px">
+              <div>
+                <dt>Email</dt>
+                <dd><a href="mailto:pattymcharis15@gmail.com">pattymcharis15@gmail.com</a></dd>
+              </div>
+              <div>
+                <dt>Based in</dt>
+                <dd>Helsinki, Finland</dd>
+              </div>
+              <div>
+                <dt>Languages</dt>
+                <dd>English</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="form-card" data-reveal="theme" data-reveal-index="1">
+            <form data-endpoint="/submit" action="/submit" method="post" novalidate>
+              <div class="form-grid">
+                <div class="field field--full">
+                  <label for="contact-email">Email</label>
+                  <input type="email" id="contact-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                </div>
+
+                <div class="field field--full">
+                  <label for="contact-message">Message</label>
+                  <textarea id="contact-message" name="message" placeholder="What would you like to talk about?" required></textarea>
+                </div>
+
+                <div class="field field--full">
+                  <button class="btn btn--primary btn--block" type="submit">Send message</button>
+                </div>
+              </div>
+
+              <div class="form-status" role="status" aria-live="polite" style="margin-top:16px">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                <span data-status-text></span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= CLOSING CTA ======================== -->
+    <section class="section section--tight">
+      <div class="shell">
+        <div class="closing" data-reveal="theme" data-reveal-index="0">
+          <div class="closing__img" aria-hidden="true">
+            <img src="patty_3.jpg" alt="" loading="lazy">
+            <div class="closing__scrim"></div>
+          </div>
+          <h2>Let's fire something together.</h2>
+          <p>
+            If you read all of that and it sounded like someone you would want on your team,
+            the next step is a conversation.
+          </p>
+          <div class="actions">
+            <a class="btn btn--primary" href="projects.html">View my projects</a>
+            <a class="btn btn--ghost" href="coverletter.html">Read my cover letter</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          <img class="site-footer__sig" src="signature.png" alt="Patricia Manhenda's signature">
+          <p>Software & AI engineer<br>Helsinki, Finland</p>
+        </div>
+
+        <ul class="socials">
+          <li>
+            <a href="https://github.com/Rumbie-Manhenda" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-2.1c-3.2.7-3.87-1.4-3.87-1.4-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.78 1.19 1.78 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/patricia-manhenda-6818131b9/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/pattymcharis/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 5.68a4.16 4.16 0 1 0 0 8.32 4.16 4.16 0 0 0 0-8.32zm0 6.86a2.7 2.7 0 1 1 0-5.4 2.7 2.7 0 0 1 0 5.4zm5.3-7.03a.97.97 0 1 1-1.94 0 .97.97 0 0 1 1.94 0z"/></svg>
+            </a>
+          </li>
         </ul>
-        <p><b>All rights reserved 2024 - Patricia Manhenda</b></p>
-    </footer>
-    
-<script>
+      </div>
 
-    const form = document.querySelector('form');
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const formData = new FormData(form);
-        try {
-            console.log('Sending form data:', formData);
-            const response = await fetch('http://localhost:3000/submit', {
-                method: 'POST',
-                body: formData
-            });
-            console.log('Server response status:', response.status);
-            const data = await response.text();
-            console.log('Server response data:', data);
-            if (response.ok) {
-                alert(data);
-                form.reset();
-            } else {
-                throw new Error(`Failed to submit message: ${data}`);
-            }
-        } catch (error) {
-            console.error('Error submitting message:', error);
-            alert('Error submitting message. Please try again later.');
-        }
-    });
-    
-    
-   
-</script>
+      <div class="shell legal">
+        <p>© <span data-year>2024</span> Patricia Manhenda. All rights reserved.</p>
+        <nav aria-label="Footer">
+          <a href="index.html">Home</a>
+          <a href="projects.html">Projects</a>
+          <a href="aboutme.html">About</a>
+          <a href="coverletter.html">Cover letter</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
 
+  <script src="reveal.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

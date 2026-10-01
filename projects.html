@@ -1,165 +1,414 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="studio-kiln">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My projects</title>
-<link rel="stylesheet" href="./style.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Patricia Manhenda</title>
+  <meta name="description" content="Machine learning, cybersecurity and deep learning projects by Patricia Manhenda, plus her milestones and technical skills.">
+
+  <link rel="icon" href="star.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Figtree:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header id="projects-header">
-        <div class="projects-section1">
-            <img src="./patty_2.jpg" alt="my photo" width="50px" height="50px"/>
-            <h2>SOFTWARE DEVELOPER| AI ENGINEER</h2>
-            <h4>2024</h4>
-        </div>
-        <div class="projects-h1">
-            <div class="circle2"></div>
-            <div class="circle3"></div>
-            <div class="circle"></div>
-            <div class="circle_b"></div>
-            <h1>PROJECTS</h1>
-            
-        </div>
-         <nav class="projects-nav-list">
-            <ul>
-                <li><a href="./index.html">Home</a></li>  
-            </ul>
-         </nav>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="kiln-bg" aria-hidden="true"></div>
+
+  <header class="site-nav">
+    <div class="nav-pill">
+      <a class="nav-pill__mark" href="index.html">
+        <span aria-hidden="true"></span>
+        Patricia Manhenda
+      </a>
+
+      <nav class="nav-pill__links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="projects.html" aria-current="page">Projects</a>
+        <a href="aboutme.html">About</a>
+        <a href="coverletter.html">Cover letter</a>
+      </nav>
+
+      <a class="nav-pill__cta" href="RUMBIDZAI_MANHENDA_CV2024.pdf" target="_blank" rel="noopener">Download CV</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Toggle navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <nav class="nav-drawer" id="nav-drawer" data-open="false" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="aboutme.html">About</a>
+    <a href="coverletter.html">Cover letter</a>
+    <a href="RUMBIDZAI_MANHENDA_CV2024.pdf" target="_blank" rel="noopener">Download CV</a>
+  </nav>
+
+  <main id="main">
+
+    <!-- =========================== PAGE HEAD ======================== -->
+    <header class="page-head shell">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span aria-hidden="true">/</span>
+        <span>Projects</span>
+      </nav>
+
+      <div class="page-head__row">
+        <h1>Work, <em>fired</em> and finished.</h1>
+        <p class="page-head__aside">Three disciplines · One habit of shipping</p>
+      </div>
+
+      <p class="lede">
+        Everything below started as a question worth answering. Each build took a different
+        material — a recommender, a network classifier, a failure-prediction model — but the
+        same method: understand the data, build the system, then make it usable.
+      </p>
     </header>
-   <main class="projects">
-    <section class="milestones">
-        <h2>Key Milestones</h2>
-        <h5>
-        Data Analytics Internship <span style="visibility: hidden;">************************************************************************** </span>2017 <br/><br/>
-        Technical Customer Agent<span style="visibility: hidden;">************************************************************************** </span>2017 <br/><br/>
-        IEUK Bright Network Internship <span style="visibility: hidden;">******************************************************************** </span>2017 <br/><br/>
-        Bachelors in Computer Science <span style="visibility: hidden;">**************************************8888888888888888888**** </span>2023 <br/><br/>
-        </h5>
+
+    <!-- ========================== MILESTONES ======================== -->
+    <section class="section section--tight">
+      <div class="shell">
+        <div class="section__head" data-reveal="theme" data-reveal-index="0">
+          <p class="eyebrow">Milestones</p>
+          <h2 class="title-l">The road so far.</h2>
+        </div>
+
+        <div class="milestones">
+          <article class="milestone" data-reveal="theme" data-reveal-index="0">
+            <p class="milestone__year">2017</p>
+            <h3 class="milestone__what">Data Analytics Internship</h3>
+            <p class="milestone__where">Analytics</p>
+          </article>
+
+          <article class="milestone" data-reveal="theme" data-reveal-index="1">
+            <p class="milestone__year">2017</p>
+            <h3 class="milestone__what">Technical Customer Agent</h3>
+            <p class="milestone__where">Customer support</p>
+          </article>
+
+          <article class="milestone" data-reveal="theme" data-reveal-index="2">
+            <p class="milestone__year">2017</p>
+            <h3 class="milestone__what">IEUK Bright Network Internship</h3>
+            <p class="milestone__where">Graduate programme</p>
+          </article>
+
+          <article class="milestone" data-reveal="theme" data-reveal-index="3">
+            <p class="milestone__year">2023</p>
+            <h3 class="milestone__what">BSc Computer Science</h3>
+            <p class="milestone__where">University of London</p>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section id="projects-container">
-     
-        <h2>My Works</h2>
-        <div class="projects-container">
-            <div class="left">
-                <img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&w=600" alt = "university of london logo" width="100px" height="100px">  
-                <h4>Virtual Stylist AI Website</h4>
-                <a href="https://github.com/Rumbie-Manhenda/com.docker.devenvironments.code" target="_blank"><p>Code:Machine Learning</p></a> 
-            </div>
-            <div class="center">
-                <img src="https://media.istockphoto.com/id/1331943958/fi/valokuva/digitaalisen-pilviturvan-taustakonsepti.jpg?s=612x612&w=0&k=20&c=2nWqAob7V-0fG3Cv_jH25JgjODjxLnoPjkU6ne20XuY=" alt="my country" width="100px" height="100px">    
-                <h4>Intrusion Detection System</h4>
-                <a href="https://github.com/Rumbie-Manhenda/INTRUSION-DETECTION-SYSTEM" target="_blank"><p>Code:Cybersecurity</p></a> 
-            </div>
-            <div class="right">
-                <img src="https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg?auto=compress&cs=tinysrgb&w=600"  alt=" photo of Finland" width="100px" height="100px"> 
-                <h4>Aircraft Predictive Maintanance</h4>
-                <a href="https://github.com/Rumbie-Manhenda/Predictive-Maintenance-for-Aircraft" target="_blank"><p>Code:Aviation(Deep Learning)</p></a> 
-            </div>
+    <!-- ============================ WORK ============================ -->
+    <section class="section section--sunken">
+      <div class="shell">
+        <div class="section__head" data-reveal="theme" data-reveal-index="0">
+          <p class="eyebrow">My work</p>
+          <h2 class="title-l">Three builds worth the firing.</h2>
+          <p class="lede">
+            Source for each project is on GitHub — including the notebooks, the training runs
+            and the notes on what did not work.
+          </p>
         </div>
-        </div>
-    </section>
-    <section class="skills">
-        <h2>My Skills</h2>
-        <div class="skills-container">
-            <div class="left">
-                <h3>Programming Languages</h3>
-                <ul>
-                    <li>Python <span class="rank95">95%</span></li>
-                    <li>JavaScript <span class="rank95">95%</span></li>
-                    <li>React <span class="rank80">80%</span></li>
-                    <li>HTML5 <span class="rank90">90%</span></li>
-                </ul>
-            </div>
-            <div class="center">
-                <h3>Frameworks and Libraries</h3>
-                <ul>
-                    <li>Tensorflow <span class="rank95">95%</span></li>
-                    <li>Keras <span class="rank95">95%</span></li>
-                    <li>Bootstrap <span class="rank80">80%</span></li>
-                    <li>JQuery <span class="rank80">80%</span></li>
-                    <li>Node.js <span class="rank80">80%</span></li>
-                    <li>Express.js <span class="rank80">80%</span></li>
-                    <li>MariaDB <span class="rank90">90%</span></li>
-                    <li>MySQL <span class="rank90">90%</span></li>
-                    <li>Git <span class="rank85">85%</span></li>
-                    <li>Docker <span class="rank80">80%</span></li>
-                    <li>Microsoft Azure <span class="rank80">80%</span></li>
-                </ul>
-            </div>
-            <div class="right">
-                <h3>Tools</h3>
-                <ul>
-                    <li>VS Code <span class="rank90">90%</span></li>
-                    <li>Google Colab <span class="rank95">95%</span></li>
-                    <li>Jupyter Notebook <span class="rank95">95%</span></li>
-                    <li>GitHub <span class="rank80">80%</span></li>
-                    <li>Linux Commands <span class="rank80">80%</span></li>
-                    <li>ZenHub <span class="rank80">80%</span></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    
 
-    <section class="recommendations">
-        <button><a href="./RUMBIDZAI_MANHENDA_CV2024.pdf" target="_blank"  class="cv">View My CV</a></button>
-        <h2>Hope you enjoyed exploring my portfolio! Your feedback matters! If you found my work inspiring or valuable, 
-            I'd greatly appreciate your recommendation. Your words can help others discover and trust in my skills. 
-            Thank you for considering sharing your thoughts!<b>):</b></h2>
-        <fieldset>
-            <legend>Recommendations</legend>
-            <form  action="/submit_rec" method="post">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email_rec" placeholder="Email"><br/><br/>
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name_rec" placeholder="Full Name"><br/><br/>
-                <label for="message">Your Recommendation Message</label>
-                <textarea id="message" placeholder="Your message" name="message_rec"></textarea><br/><br/>
-                <button type="submit" name="submit">Submit</button>
+        <div class="work-grid">
+          <article class="work-card" data-reveal="theme" data-reveal-index="0">
+            <div class="work-card__media">
+              <img src="https://images.pexels.com/photos/1081685/pexels-photo-1081685.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Railway tracks at dusk" loading="lazy">
+            </div>
+            <div class="work-card__body">
+              <h3>Virtual Stylist AI Website</h3>
+              <p>A styling recommender trained inside a containerised development environment — the full pipeline from data preparation to a web front end.</p>
+              <div class="work-card__foot">
+                <span class="chip">Machine learning</span>
+                <a class="work-card__link" href="https://github.com/Rumbie-Manhenda/com.docker.devenvironments.code" target="_blank" rel="noopener">
+                  Code
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card" data-reveal="theme" data-reveal-index="1">
+            <div class="work-card__media">
+              <img src="https://media.istockphoto.com/id/1331943958/fi/valokuva/digitaalisen-pilviturvan-taustakonsepti.jpg?s=612x612&w=0&k=20&c=2nWqAob7V-0fG3Cv_jH25JgjODjxLnoPjkU6ne20XuY=" alt="Abstract digital security concept" loading="lazy">
+            </div>
+            <div class="work-card__body">
+              <h3>Intrusion Detection System</h3>
+              <p>Classifying network traffic to separate hostile patterns from ordinary noise, so a compromised host is caught early rather than after the fact.</p>
+              <div class="work-card__foot">
+                <span class="chip">Cybersecurity</span>
+                <a class="work-card__link" href="https://github.com/Rumbie-Manhenda/INTRUSION-DETECTION-SYSTEM" target="_blank" rel="noopener">
+                  Code
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card" data-reveal="theme" data-reveal-index="2">
+            <div class="work-card__media">
+              <img src="https://images.pexels.com/photos/46148/aircraft-jet-landing-cloud-46148.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Aircraft on approach" loading="lazy">
+            </div>
+            <div class="work-card__body">
+              <h3>Aircraft Predictive Maintenance</h3>
+              <p>Deep learning over sensor telemetry to anticipate which component fails next — turning scheduled maintenance into predicted maintenance.</p>
+              <div class="work-card__foot">
+                <span class="chip">Deep learning</span>
+                <a class="work-card__link" href="https://github.com/Rumbie-Manhenda/Predictive-Maintenance-for-Aircraft" target="_blank" rel="noopener">
+                  Code
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+<!-- ============================ SKILLS ========================== -->
+    <section class="section">
+      <div class="shell">
+        <div class="section__head" data-reveal="theme" data-reveal-index="0">
+          <p class="eyebrow">My skills</p>
+          <h2 class="title-l">A toolkit, weighed honestly.</h2>
+          <p class="lede">
+            Percentages are self-assessed against real use — how often I reach for a tool
+            and how much of it I would claim to know.
+          </p>
+        </div>
+
+        <div class="skill-cols">
+          <article class="skill-panel" data-reveal="theme" data-reveal-index="0">
+            <h3>Programming languages</h3>
+            <div class="skill-list">
+              <div class="skill" data-pct="95">
+                <div class="skill__row"><span>Python</span><b>95%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="95">
+                <div class="skill__row"><span>JavaScript</span><b>95%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="80">
+                <div class="skill__row"><span>React</span><b>80%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="90">
+                <div class="skill__row"><span>HTML5</span><b>90%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="skill-panel" data-reveal="theme" data-reveal-index="1">
+            <h3>Frameworks & libraries</h3>
+            <div class="skill-list">
+              <div class="skill" data-pct="95">
+                <div class="skill__row"><span>TensorFlow</span><b>95%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="95">
+                <div class="skill__row"><span>Keras</span><b>95%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="90">
+                <div class="skill__row"><span>MySQL</span><b>90%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="90">
+                <div class="skill__row"><span>MariaDB</span><b>90%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="85">
+                <div class="skill__row"><span>Git</span><b>85%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="80">
+                <div class="skill__row"><span>Node.js</span><b>80%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="80">
+                <div class="skill__row"><span>Express.js</span><b>80%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="80">
+                <div class="skill__row"><span>Bootstrap</span><b>80%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="80">
+                <div class="skill__row"><span>jQuery</span><b>80%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="80">
+                <div class="skill__row"><span>Docker</span><b>80%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="80">
+                <div class="skill__row"><span>Microsoft Azure</span><b>80%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="skill-panel" data-reveal="theme" data-reveal-index="2">
+            <h3>Tools</h3>
+            <div class="skill-list">
+              <div class="skill" data-pct="95">
+                <div class="skill__row"><span>Google Colab</span><b>95%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="95">
+                <div class="skill__row"><span>Jupyter Notebook</span><b>95%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="90">
+                <div class="skill__row"><span>VS Code</span><b>90%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="80">
+                <div class="skill__row"><span>GitHub</span><b>80%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="80">
+                <div class="skill__row"><span>Linux commands</span><b>80%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+              <div class="skill" data-pct="80">
+                <div class="skill__row"><span>ZenHub</span><b>80%</b></div>
+                <div class="skill__track"><div class="skill__fill"></div></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+<!-- ======================== RECOMMENDATIONS ===================== -->
+    <section class="section section--sunken">
+      <div class="shell">
+        <div class="grid-2">
+          <div class="gap-lg" data-reveal="theme" data-reveal-index="0">
+            <p class="eyebrow">Recommendations</p>
+            <h2 class="title-l">Your words travel further than mine.</h2>
+            <p class="body-copy">
+              If something here was useful, or you have worked with me and would say so,
+              a short recommendation helps the next person decide whether to trust my work.
+            </p>
+            <p class="body-copy">
+              Prefer to read first? The CV has the short version of everything on this page.
+            </p>
+            <div class="actions">
+              <a class="btn btn--ghost" href="RUMBIDZAI_MANHENDA_CV2024.pdf" target="_blank" rel="noopener">
+                View my CV
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="form-card" data-reveal="theme" data-reveal-index="1">
+            <form data-endpoint="/submit_rec" action="/submit_rec" method="post" novalidate>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="rec-name">Name</label>
+                  <input type="text" id="rec-name" name="name_rec" placeholder="Your full name" autocomplete="name" required>
+                </div>
+
+                <div class="field">
+                  <label for="rec-email">Email</label>
+                  <input type="email" id="rec-email" name="email_rec" placeholder="you@example.com" autocomplete="email" required>
+                </div>
+
+                <div class="field field--full">
+                  <label for="rec-message">Your recommendation</label>
+                  <textarea id="rec-message" name="message_rec" placeholder="Where we worked together, and what you noticed." required></textarea>
+                </div>
+
+                <div class="field field--full">
+                  <button class="btn btn--primary btn--block" type="submit">Submit recommendation</button>
+                </div>
+              </div>
+
+              <div class="form-status" role="status" aria-live="polite" style="margin-top:16px">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                <span data-status-text></span>
+              </div>
             </form>
-        </fieldset>
+          </div>
+        </div>
+      </div>
     </section>
-    
-   </main>
-   <footer>
-    <ul class="icons">
-        <li><a href="https://www.instagram.com/pattymcharis/"><img src="insta logo.jpg" alt="Instagram logo" width="50" height="50"></a></li>
-        <li><a href="https://www.linkedin.com/in/patricia-manhenda-6818131b9/"><img src="linkedin.png" alt="LinkedIn logo" width="50" height="50"></a></li>
-        <li><a href="https://github.com/Rumbie-Manhenda"><img src="github.png" alt="GitHub logo" width="50" height="50"></a></li>
-    </ul>
-    <p><b>All rights reserved 2024 - Patricia Manhenda</b></p>
-   </footer>
-   <script>
 
-    const form_rec = document.querySelector('form');
-    form_rec.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const formData_rec = new FormData(form_rec);
-        try {
-            console.log('Sending form data:', formData_rec);
-            const response_rec = await fetch('http://localhost:3000/submit_rec', {
-                method: 'POST',
-                body: formData_rec
-            });
-            console.log('Server response status:', response_rec.status);
-            const data_rec = await response_rec.text();
-            console.log('Server response data:', data_rec);
-            if (response_rec.ok) {
-                alert(data_rec);
-                form_rec.reset();
-            } else {
-                throw new Error(`Failed to submit message: ${data_rec}`);
-            }
-        } catch (error) {
-            console.error('Error submitting message:', error);
-            alert('Error submitting message. Please try again later.');
-        }
-    });
-    
-    
-   
-</script>
+    <!-- ========================= CLOSING CTA ======================== -->
+    <section class="section section--tight">
+      <div class="shell">
+        <div class="closing" data-reveal="theme" data-reveal-index="0">
+          <div class="closing__img" aria-hidden="true">
+            <img src="patty_2.jpg" alt="" loading="lazy">
+            <div class="closing__scrim"></div>
+          </div>
+          <h2>Let's fire something together.</h2>
+          <p>
+            If any of this is the kind of work you need done, I would like to hear about it —
+            whether that is a role, a collaboration, or a problem that has been sitting too long.
+          </p>
+          <div class="actions">
+            <a class="btn btn--primary" href="aboutme.html">More about me</a>
+            <a class="btn btn--ghost" href="mailto:pattymcharis15@gmail.com">Email me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          <img class="site-footer__sig" src="signature.png" alt="Patricia Manhenda's signature">
+          <p>Software & AI engineer<br>Helsinki, Finland</p>
+        </div>
+
+        <ul class="socials">
+          <li>
+            <a href="https://github.com/Rumbie-Manhenda" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-2.1c-3.2.7-3.87-1.4-3.87-1.4-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.78 1.19 1.78 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/patricia-manhenda-6818131b9/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/pattymcharis/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 5.68a4.16 4.16 0 1 0 0 8.32 4.16 4.16 0 0 0 0-8.32zm0 6.86a2.7 2.7 0 1 1 0-5.4 2.7 2.7 0 0 1 0 5.4zm5.3-7.03a.97.97 0 1 1-1.94 0 .97.97 0 0 1 1.94 0z"/></svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="shell legal">
+        <p>© <span data-year>2024</span> Patricia Manhenda. All rights reserved.</p>
+        <nav aria-label="Footer">
+          <a href="index.html">Home</a>
+          <a href="projects.html">Projects</a>
+          <a href="aboutme.html">About</a>
+          <a href="coverletter.html">Cover letter</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="reveal.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

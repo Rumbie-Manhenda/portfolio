@@ -1,42 +1,359 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="studio-kiln">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My portfolio</title>
+  <title>Patricia Manhenda — Software & AI Engineer</title>
+  <meta name="description" content="Patricia Manhenda is a software and AI engineer specialising in machine learning, data science and web development. University of London, based in Helsinki.">
+
+  <link rel="icon" href="star.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Figtree:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap">
+  <link rel="stylesheet" href="theme.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <video autoplay muted loop id="background-video" playbackRate="0.25">
-        <source src="https://videos.pexels.com/video-files/4884233/4884233-sd_640_360_30fps.mp4" type="video/mp4">
-    </video>
-    <header>
-        <div class="home">
-            <h1>Software Engineer|AI Developer</h1>
-            <h3 >PATRICIA MANHENDA</h3>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="kiln-bg" aria-hidden="true"></div>
+
+  <header class="site-nav">
+    <div class="nav-pill">
+      <a class="nav-pill__mark" href="index.html">
+        <span aria-hidden="true"></span>
+        Patricia Manhenda
+      </a>
+
+      <nav class="nav-pill__links" aria-label="Primary">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="aboutme.html">About</a>
+        <a href="coverletter.html">Cover letter</a>
+      </nav>
+
+      <a class="nav-pill__cta" href="RUMBIDZAI_MANHENDA_CV2024.pdf" target="_blank" rel="noopener">Download CV</a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Toggle navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <nav class="nav-drawer" id="nav-drawer" data-open="false" aria-label="Mobile">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="aboutme.html">About</a>
+    <a href="coverletter.html">Cover letter</a>
+    <a href="RUMBIDZAI_MANHENDA_CV2024.pdf" target="_blank" rel="noopener">Download CV</a>
+  </nav>
+
+  <main id="main">
+
+    <!-- ============================ HERO ============================ -->
+    <section class="hero">
+      <div class="shell hero__grid">
+        <div>
+          <p class="eyebrow">Software engineer · AI developer</p>
+
+          <div class="hero__stars" style="margin-top:18px">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span><b>First-Class Honours</b> · BSc Computer Science, University of London</span>
+          </div>
+
+          <h1 class="hero__title">
+            Systems built slowly,<br>
+            to work <em>for years</em>.
+          </h1>
+
+          <p class="hero__lede">
+            I'm Patricia Manhenda — a software and AI engineer working in machine learning,
+            data science and the web. Small batches, careful work, measurable results.
+          </p>
+
+          <div class="actions">
+            <a class="btn btn--primary" href="projects.html">
+              View my projects
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="RUMBIDZAI_MANHENDA_CV2024.pdf" target="_blank" rel="noopener">Download CV</a>
+          </div>
+
+          <dl class="hero__meta">
+            <div>
+              <dt>Specialisation</dt>
+              <dd>Machine learning & neural networks</dd>
+            </div>
+            <div>
+              <dt>Based in</dt>
+              <dd>Helsinki, Finland</dd>
+            </div>
+            <div>
+              <dt>Open to</dt>
+              <dd>Relocation & sponsorship</dd>
+            </div>
+          </dl>
         </div>
-         <nav class="nav-list">
-            <div class="circle2"></div>
-            <div class="circle3"></div>
-            
-            <ul>
-                <li><a href="./aboutme.html">About Me</a></li>
-                <li><a href="./projects.html">My projects</a></li>
-            </ul>
-         </nav>
-    </header>
-    <main class="index">
-        <p>
-    Hello and Welcome! I am a passionate AI and software engineer with expertise in data science, machine learning, and web development. 
-    I leverage my skills to deliver innovative solutions and drive tangible results.
-     I hold a Bachelor of Applied Science in Computer Science with a specialization in Machine Learning and Neural Networks from the University of London.
-    </p>
-     <h3> Explore my work through the tabs above.</h3>
 
-    </main>
+        <div class="hero__media">
+          <div class="photo">
+            <img src="patty_fin.jpg" alt="Patricia Manhenda" width="900" height="1125">
+          </div>
+          <div class="hero__badge">
+            <span>Currently</span>
+            <strong>Building applied ML systems</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+<!-- ========================= PROOF STRIP ======================== -->
+    <section class="proof" aria-label="Background">
+      <div class="proof__track">
+        <ul class="proof__group">
+          <li>University of London</li>
+          <li>BSc Computer Science</li>
+          <li>First-Class Honours</li>
+          <li>Machine Learning & Neural Networks</li>
+          <li>Based in Helsinki, Finland</li>
+          <li>Python · JavaScript · TensorFlow</li>
+        </ul>
+        <ul class="proof__group" aria-hidden="true">
+          <li>University of London</li>
+          <li>BSc Computer Science</li>
+          <li>First-Class Honours</li>
+          <li>Machine Learning & Neural Networks</li>
+          <li>Based in Helsinki, Finland</li>
+          <li>Python · JavaScript · TensorFlow</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================ BENTO =========================== -->
+    <section class="section">
+      <div class="shell">
+        <div class="section__head" data-reveal="theme" data-reveal-index="0">
+          <p class="eyebrow">At a glance</p>
+          <h2 class="title-l">Hand-thrown work,<br>fired with data.</h2>
+          <p class="lede">
+            Three flagship builds, a toolkit that spans research notebooks to production
+            front-ends, and a habit of finishing what I start.
+          </p>
+        </div>
+
+        <div class="bento">
+          <article class="cell cell--wide cell--accent" data-reveal="theme" data-reveal-index="0">
+            <p class="cell__label">What I do</p>
+            <h3 class="title-m">Machine learning, applied.</h3>
+            <p class="body-copy">
+              I take models out of the notebook and build the system around them —
+              the data pipeline, the API, and the interface a person actually uses.
+            </p>
+            <div class="cell__list">
+              <span class="tag">Machine learning</span>
+              <span class="tag">Deep learning</span>
+              <span class="tag">Data science</span>
+              <span class="tag">Full-stack web</span>
+              <span class="tag">Computer vision</span>
+            </div>
+          </article>
+
+          <article class="cell" data-reveal="theme" data-reveal-index="1">
+            <p class="cell__label">Primary languages</p>
+            <p class="cell__figure"><span data-count="95">95</span><sup>%</sup></p>
+            <p class="body-copy">Comfortable in Python and JavaScript, with React on the front end.</p>
+          </article>
+
+          <article class="cell" data-reveal="theme" data-reveal-index="2">
+            <p class="cell__label">Flagship builds</p>
+            <p class="cell__figure"><span data-count="3">3</span></p>
+            <p class="body-copy">A stylist recommender, an intrusion detector, and predictive maintenance for aircraft.</p>
+          </article>
+
+          <article class="cell" data-reveal="theme" data-reveal-index="3">
+            <p class="cell__label">Degree result</p>
+            <p class="cell__figure"><span data-count="1">1</span><sup>st</sup></p>
+            <p class="body-copy">First-Class Honours, Computer Science — Machine Learning & Neural Networks.</p>
+          </article>
+
+          <article class="cell" data-reveal="theme" data-reveal-index="4">
+            <p class="cell__label">Toolkit</p>
+            <div class="cell__list">
+              <span class="tag">TensorFlow</span>
+              <span class="tag">Keras</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Express</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Azure</span>
+              <span class="tag">Git</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================== SELECTED WORK ======================= -->
+    <section class="section section--sunken">
+      <div class="shell">
+        <div class="section__head" data-reveal="theme" data-reveal-index="0">
+          <p class="eyebrow">Selected work</p>
+          <h2 class="title-l">Three builds, three disciplines.</h2>
+        </div>
+
+        <div class="work-grid">
+          <article class="work-card" data-reveal="theme" data-reveal-index="0">
+            <div class="work-card__media" aria-hidden="true">
+              <span class="work-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.6a2.4 2.4 0 1 1 2.1-3.5"/><path d="M12 6.6 3 14.2h18z"/></svg>
+              </span>
+            </div>
+            <div class="work-card__body">
+              <h3>Virtual Stylist AI</h3>
+              <p>A recommender that reads a wardrobe and suggests outfits — trained end to end in a containerised ML environment.</p>
+              <div class="work-card__foot">
+                <span class="chip">Machine learning</span>
+                <a class="work-card__link" href="https://github.com/Rumbie-Manhenda/com.docker.devenvironments.code" target="_blank" rel="noopener">
+                  Code
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card" data-reveal="theme" data-reveal-index="1">
+            <div class="work-card__media" aria-hidden="true">
+              <span class="work-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8 4.5 5.6v6c0 4.3 3.1 8.1 7.5 9.6 4.4-1.5 7.5-5.3 7.5-9.6v-6L12 2.8z"/><path d="M9 12.3l2.3 2.3L15.5 10"/></svg>
+              </span>
+            </div>
+            <div class="work-card__body">
+              <h3>Intrusion Detection System</h3>
+              <p>Network traffic classification that flags hostile patterns before they reach the host.</p>
+              <div class="work-card__foot">
+                <span class="chip">Cybersecurity</span>
+                <a class="work-card__link" href="https://github.com/Rumbie-Manhenda/INTRUSION-DETECTION-SYSTEM" target="_blank" rel="noopener">
+                  Code
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card" data-reveal="theme" data-reveal-index="2">
+            <div class="work-card__media" aria-hidden="true">
+              <span class="work-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-6.5 3.6 13L15.5 12H21"/></svg>
+              </span>
+            </div>
+            <div class="work-card__body">
+              <h3>Aircraft Predictive Maintenance</h3>
+              <p>Deep learning over sensor telemetry to anticipate component failure before it grounds a fleet.</p>
+              <div class="work-card__foot">
+                <span class="chip">Deep learning</span>
+                <a class="work-card__link" href="https://github.com/Rumbie-Manhenda/Predictive-Maintenance-for-Aircraft" target="_blank" rel="noopener">
+                  Code
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="mt-lg" data-reveal="theme" data-reveal-index="3">
+          <a class="btn btn--ghost" href="projects.html">
+            View my projects
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+<!-- ========================== QUOTE BAND ======================== -->
+    <section class="section section--tight">
+      <div class="shell">
+        <figure class="quote-band" data-reveal="theme" data-reveal-index="0">
+          <div class="quote-band__img" aria-hidden="true">
+            <img src="assets/kiln-texture.jpg" alt="" loading="lazy">
+            <div class="quote-band__scrim"></div>
+          </div>
+          <div class="quote-band__inner">
+            <span class="tag">How I work</span>
+            <blockquote>
+              “I would rather ship one system that holds up in production than five
+              that only look good in a demo.”
+            </blockquote>
+            <figcaption>Patricia Manhenda — software & AI engineer</figcaption>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ========================= CLOSING CTA ======================== -->
+    <section class="section section--tight">
+      <div class="shell">
+        <div class="closing" data-reveal="theme" data-reveal-index="0">
+          <div class="closing__img" aria-hidden="true">
+            <img src="portfolio.jpg" alt="" loading="lazy">
+            <div class="closing__scrim"></div>
+          </div>
+          <h2>Let's fire something together.</h2>
+          <p>
+            I'm open to AI, machine-learning and backend roles — in Finland, across Europe,
+            or wherever a visa will follow. The quickest way to reach me is email.
+          </p>
+          <div class="actions">
+            <a class="btn btn--primary" href="projects.html">View my projects</a>
+            <a class="btn btn--ghost" href="mailto:pattymcharis15@gmail.com">Email me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          <img class="site-footer__sig" src="signature.png" alt="Patricia Manhenda's signature">
+          <p>Software & AI engineer<br>Helsinki, Finland</p>
+        </div>
+
+        <ul class="socials">
+          <li>
+            <a href="https://github.com/Rumbie-Manhenda" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.55v-2.1c-3.2.7-3.87-1.4-3.87-1.4-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.78 1.19 1.78 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.25 5.69.42.36.79 1.07.79 2.16v3.2c0 .31.21.67.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/patricia-manhenda-6818131b9/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/pattymcharis/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 5.68a4.16 4.16 0 1 0 0 8.32 4.16 4.16 0 0 0 0-8.32zm0 6.86a2.7 2.7 0 1 1 0-5.4 2.7 2.7 0 0 1 0 5.4zm5.3-7.03a.97.97 0 1 1-1.94 0 .97.97 0 0 1 1.94 0z"/></svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="shell legal">
+        <p>© <span data-year>2024</span> Patricia Manhenda. All rights reserved.</p>
+        <nav aria-label="Footer">
+          <a href="index.html">Home</a>
+          <a href="projects.html">Projects</a>
+          <a href="aboutme.html">About</a>
+          <a href="coverletter.html">Cover letter</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="reveal.js"></script>
+  <script src="main.js"></script>
 </body>
-<script src="./sketch.js"></script>
 </html>
-</html>
-
