@@ -126,11 +126,21 @@
   }
 
   /* ------------------------------------------------------------------
-   * 5. Forms — POST to the existing Express endpoints, report inline
+   * 5. Forms — POST to the Express endpoints, report inline
    *    Endpoints: POST /submit  (email, message)
    *               POST /submit_rec (email_rec, name_rec, message_rec)
+   *
+   * The Express server serves this site and the API together, so posting to
+   * the same origin the page was loaded from is correct in production. A page
+   * opened straight from disk (file://) falls back to the local dev server.
+   * Set window.PORTFOLIO_API first to point at a different backend.
    * ------------------------------------------------------------------ */
-  var ENDPOINT = 'http://localhost:3000';
+  var ENDPOINT =
+    typeof window.PORTFOLIO_API === 'string'
+      ? window.PORTFOLIO_API
+      : window.location.protocol === 'file:'
+      ? 'http://localhost:3000'
+      : '';
 
   function setStatus(form, state, message) {
     var box = form.querySelector('.form-status');
@@ -181,10 +191,13 @@
           })
           .catch(function (error) {
             console.error('Form submission failed:', error);
+            var isNetworkError = error && error.name === 'TypeError';
             setStatus(
               form,
               'error',
-              'Could not reach the message server. The form is wired to a local Express endpoint — start it and try again.'
+              isNetworkError
+                ? 'Could not reach the message server. Please check your connection and try again, or email me directly.'
+                : (error && error.message) || 'Something went wrong — please try again.'
             );
           })
           .finally(function () {

@@ -1,4 +1,14 @@
 {
+  "name": "portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Patricia Manhenda's portfolio site with an Express backend that emails contact-form messages via SMTP.",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js",
+    "test": "node --test test/"
+  },
   "dependencies": {
     "body-parser": "^1.20.2",
     "express": "^4.19.2",

@@ -1394,3 +1394,32 @@
 @media (max-width:760px){
   .place-grid{grid-template-columns:1fr}
 }
+/* --------------------------------------------------------------------------
+   22. About — the questions that started it
+   -------------------------------------------------------------------------- */
+.questions{
+  display:flex;
+  flex-direction:column;
+  border-top:var(--tp-bw) solid var(--tp-line);
+  margin-top:6px;
+}
+
+.questions li{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 4px;
+  border-bottom:var(--tp-bw) solid var(--tp-line);
+  font-family:var(--tp-font-display);
+  font-size:clamp(17px, 2vw, 21px);
+  line-height:1.35;
+}
+
+.questions li::before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--tp-acc);
+  flex:none;
+}
