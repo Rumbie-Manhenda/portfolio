@@ -1,141 +1,143 @@
-# My Portfolio Website
+# Patricia Manhenda — portfolio
 
-This is my personal portfolio website — a showcase of who I am, my projects and my
-skills. The pages are built with vanilla HTML, CSS and JavaScript.
+This is my personal site: four hand-written pages (home, projects, about, cover letter)
+and a small Node/Express backend that serves them and emails the two contact forms
+straight to my inbox.
 
-The site is served by a small **Node.js + Express** backend that also powers the two
-forms on the site, so visitors can actually get in touch:
+I built it because a CV tells you which tools someone has touched. It does not tell you
+how they think, how they work, or whether they finish things. So the site is the long
+version: the story, the projects, and a way to actually reach me.
 
-- the **contact form** (About page) — sends me an email,
-- the **recommendation form** (Projects page) — sends me an email.
+---
 
-Email is delivered with [nodemailer](https://nodemailer.com/) over SMTP.
+## The flow, in one pass
 
-## How the email works
+Someone lands on `index.html`. The pages are plain HTML styled by two stylesheets and
+brought to life by two small scripts — no framework, no build step.
+
+If they fill in a form, here is what happens:
+
+1. `main.js` catches the submit, builds a `FormData` and `POST`s it to the path in the
+   form's `data-endpoint` attribute — `/submit` (email + message) or `/submit_rec`
+   (name + email + recommendation).
+2. Express receives it. `multer` parses the multipart body, `rateLimit.js` checks the
+   sender has not been spamming, and `validate.js` trims the input, strips control
+   characters and checks the lengths.
+3. `mailer.js` composes a plain-text email to me with `replyTo` set to whoever wrote in,
+   and hands it to `nodemailer`.
+4. The response comes back as a sentence, and `main.js` writes it into the form's status
+   area - inline, no page reload, no alert box.
+
+Because the same Express process serves both the site and the API, the pages post to
+their own origin. Nothing has to be configured in the browser. (Open a page straight
+from disk and `main.js` falls back to `http://localhost:3000`; if you ever host the pages
+away from the API, set `window.PORTFOLIO_API` at the top of `main.js` to the backend URL.)
+
+---
+
+## Why it is built this way
+
+**Static HTML/CSS/JS, no framework.** The pages are content, not an application. A
+framework would add a toolchain, a build step and a bundle to download - for four pages
+that are already readable as source. Plain files mean I can open one, change a sentence
+and ship it.
+
+**One theme file, one components file.** `theme.css` is a theme foundation where every
+colour, radius, shadow, font and motion value is a `--tp-*` token. `style.css` holds the
+components (nav, hero, cards, forms, footer) and consumes those tokens exclusively - it
+never hard-codes a value. The practical pay-off: re-branding the whole site is changing
+one number. The palette is generated from a single hue (`--tp-h`), so moving it moves the
+entire accent scheme with it. It also gives the site one consistent notion of motion,
+which `reveal.js` reads from (`--tp-reveal`, `--tp-dur-slow`, `--tp-stagger`) so the
+scroll animations stay in step with the theme instead of being sprinkled in by hand.
+
+**Express, serving the site and the API together.** One process, one origin, one deploy.
+Running a separate static host would have meant CORS configuration, a second deployment
+and a second thing to break, purely to serve files that Express can serve anyway.
+
+**Nodemailer instead of a database.** The obvious way to store form submissions is a
+table, and that is what I did first (see *loose ends* below). But storing them means I
+have to remember to read them, and that means an admin page, authentication, and a
+database to keep alive. An email lands where I already look, includes `replyTo`, and
+turns "reply" into a single click. Fewer moving parts, less to maintain, nothing to leak.
+
+**Multer, but also urlencoded.** Browsers send `FormData` as multipart, so the routes
+parse that. They also parse plain form posts - so if JavaScript fails or is disabled, the
+form still works as an ordinary HTML post. Same validation, same email.
+
+**Validation, rate limiting and a static guard.** These are small files doing one job
+each, because a public form is the only place a stranger can push data into my server:
+
+- `validate.js` — trims, strips control characters, enforces limits (email 254, message
+  5000, name 120) and returns a plain result the route acts on.
+- `rateLimit.js` — an in-memory bucket per IP address, 10 submissions per 10 minutes,
+  self-cleaning so the map cannot grow forever.
+- `staticGuard.js` — the site folder also holds server source, the package manifest and
+  SSH keys. This middleware returns 404 for all of it, before `express.static` ever gets
+  a look. Secrets stay secrets even though they sit next to the files being served.
+
+Emails are composed as plain text, never HTML — so nothing a visitor types can inject markup
+into the message I receive.
+
+---
+
+## What is where
 
 ```
-Browser (contact / recommendation form)
-        │  POST /submit  or  POST /submit_rec
-        ▼
-Express server  ──►  validate input  ──►  nodemailer  ──►  SMTP  ──►  your inbox
+portfolio/
+├─ index.html, projects.html, aboutme.html, coverletter.html   # the four pages
+├─ theme.css        # design tokens (--tp-*), keyframes, palette from one hue
+├─ style.css        # components, built only on those tokens
+├─ main.js          # nav drawer, skill bars, counters, footer year, form posts
+├─ reveal.js        # scroll reveal - generic, reads the theme's motion tokens
+├─ assets/          # images, video, CV PDF
+├─ server/
+│  ├─ index.js      # entry point (npm start)
+│  ├─ app.js        # builds the Express app: headers, CORS, routes, static site
+│  ├─ config.js     # reads .env / environment into one settings object
+│  ├─ loadEnv.js    # tiny dependency-free .env reader
+│  ├─ validate.js   # form input checking
+│  ├─ mailer.js     # nodemailer transport + message templates
+│  ├─ rateLimit.js  # anti-spam limiter
+│  ├─ staticGuard.js# blocks source/secret files from being served
+│  └─ routes/contact.js            # POST /submit and POST /submit_rec
+├─ test/            # npm test
+└─ .env.example     # copy to .env and fill in
 ```
 
-- `main.js` submits the forms with `fetch()` to the **same origin** the page was
-  loaded from (the Express server serves both the site and the API).
-- The server checks the input, then emails you the message with the visitor set as
-  the **Reply-To** address — so you can just hit "Reply" in your mail client.
+`GET /health` reports whether email is configured, which is handy after a deploy.
 
-## Endpoints
+---
 
-| Method | Path          | Fields                                | Purpose                        |
-| ------ | ------------- | ------------------------------------- | ------------------------------ |
-| POST   | `/submit`     | `email`, `message`                    | Contact form                   |
-| POST   | `/submit_rec` | `name_rec`, `email_rec`, `message_rec`| Recommendation form            |
-| GET    | `/health`     | –                                     | Reports `emailConfigured`      |
+## Running it locally
 
-## Setup
-
-Requirements: **Node.js 18 or newer**.
+You need **Node.js 18 or newer** (the tests use the built-in `fetch` and `FormData`).
 
 ```bash
 cd portfolio
 npm install
-```
-
-### 1. Configure your email (this is the important part)
-
-The server reads its settings from a local `.env` file. Copy the template and fill
-it in:
-
-```bash
 copy .env.example .env      # Windows
 cp   .env.example .env      # macOS / Linux
+npm start                   # http://localhost:3000
 ```
 
-**Using Gmail (recommended):**
+If `.env` is missing or incomplete the server still starts, but it says so in the
+terminal, `/health` reports `emailConfigured: false`, and the forms answer with a clear
+503 asking the visitor to email me directly - rather than pretending the message was
+sent. That was deliberate: a form that silently swallows messages is worse than one that
+admits it is not connected - I am yets to work on this !
 
-1. Turn on **2-Step Verification** for your Google account.
-2. Go to <https://myaccount.google.com/apppasswords> and create an app password
-   (name it "Portfolio").
-3. Put your address in `SMTP_USER` and the **16-character app password** in
-   `SMTP_PASS`. Do **not** use your normal Google password — Gmail rejects it.
+### Configuration
 
-```dotenv
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_SECURE=false
-SMTP_USER=you@gmail.com
-SMTP_PASS=your-16-character-app-password
-MAIL_TO=pattymcharis15@gmail.com
-MAIL_FROM=you@gmail.com
-```
+Everything lives in `.env` (git-ignored, never committed):
 
-`.env` is git-ignored, so your password is never committed.
+| Variable | Purpose |
+| --- | --- |
+| `PORT` | Port the server listens on (default `3000`) |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE` | Mail server (Gmail: `smtp.gmail.com`, `587`, `false`) |
+| `SMTP_USER`, `SMTP_PASS` | Mailbox and its app password |
+| `MAIL_TO` | Where notifications are delivered |
+| `MAIL_FROM` | "From" address; falls back to `SMTP_USER` |
+| `ALLOWED_ORIGINS` | Comma-separated site origins, or `*` |
+| `RATE_LIMIT_DISABLED` | `true` only while testing |
 
-Any SMTP provider works — just change `SMTP_HOST`, `SMTP_PORT` and `SMTP_SECURE`
-(use `SMTP_PORT=465` with `SMTP_SECURE=true` for implicit TLS).
-
-### 2. Run it
-
-```bash
-npm start
-```
-
-Then open <http://localhost:3000>. The console tells you straight away whether
-email is configured:
-
-```
-Portfolio server running at http://localhost:3000
-Email ready — contact messages will be delivered to pattymcharis15@gmail.com.
-```
-
-If it instead warns that email is **NOT** configured, the forms will return a clear
-error until you finish step 1.
-
-## Tests
-
-```bash
-npm test
-```
-
-Covers input validation, the email composition, and the HTTP endpoints end to end
-(multipart and plain form posts, validation errors, the "not configured" path, and
-the guarantee that secret files such as `gitkey` and `.env` are never served).
-
-## Project layout
-
-```
-portfolio/
-├─ index.html, aboutme.html, projects.html, coverletter.html   # pages
-├─ main.js, reveal.js, sketch.js, style.css, theme.css          # front-end
-├─ assets/                                                      # images, docs, video
-├─ server/
-│  ├─ index.js         # entry point (npm start)
-│  ├─ app.js           # Express app: CORS, static site, routes
-│  ├─ config.js        # reads .env / environment
-│  ├─ loadEnv.js       # tiny dependency-free .env reader
-│  ├─ validate.js      # form input validation
-│  ├─ mailer.js        # nodemailer transport + message templates
-│  ├─ rateLimit.js     # simple anti-spam limiter
-│  ├─ staticGuard.js   # blocks secret/source files from being served
-│  └─ routes/contact.js
-├─ test/               # npm test
-└─ .env.example        # copy to .env and fill in
-```
-
-## Deploying
-
-The server serves the static site **and** the API, so deploy the whole `portfolio`
-folder to any Node host (Render, Railway, Fly.io, a VPS, …) and set the same
-environment variables there — do not commit `.env`.
-
-If you ever host the pages separately from the API (for example on GitHub Pages),
-set `window.PORTFOLIO_API` to the API's full URL at the top of `main.js`, and add
-that site's origin to `ALLOWED_ORIGINS` in `.env`.
-
-## Dependencies
-
-- Node.js & Express.js
-- Nodemailer (email delivery)
-- Multer (parses the forms)
-- MySQL (kept for future data features)
