@@ -13,12 +13,12 @@ version: the story, the projects, and a way to actually reach me.
 ## The flow, in one pass
 
 Someone lands on `index.html`. The pages are plain HTML styled by two stylesheets and
-brought to life by two small scripts — no framework, no build step.
+brought to life by two small scripts - no framework, no build step.
 
 If they fill in a form, here is what happens:
 
 1. `main.js` catches the submit, builds a `FormData` and `POST`s it to the path in the
-   form's `data-endpoint` attribute — `/submit` (email + message) or `/submit_rec`
+   form's `data-endpoint` attribute -  `/submit` (email + message) or `/submit_rec`
    (name + email + recommendation).
 2. Express receives it. `multer` parses the multipart body, `rateLimit.js` checks the
    sender has not been spamming, and `validate.js` trims the input, strips control
@@ -68,15 +68,15 @@ form still works as an ordinary HTML post. Same validation, same email.
 **Validation, rate limiting and a static guard.** These are small files doing one job
 each, because a public form is the only place a stranger can push data into my server:
 
-- `validate.js` — trims, strips control characters, enforces limits (email 254, message
+- `validate.js` - trims, strips control characters, enforces limits (email 254, message
   5000, name 120) and returns a plain result the route acts on.
-- `rateLimit.js` — an in-memory bucket per IP address, 10 submissions per 10 minutes,
+- `rateLimit.js` - an in-memory bucket per IP address, 10 submissions per 10 minutes,
   self-cleaning so the map cannot grow forever.
-- `staticGuard.js` — the site folder also holds server source, the package manifest and
+- `staticGuard.js` - the site folder also holds server source, the package manifest and
   SSH keys. This middleware returns 404 for all of it, before `express.static` ever gets
   a look. Secrets stay secrets even though they sit next to the files being served.
 
-Emails are composed as plain text, never HTML — so nothing a visitor types can inject markup
+Emails are composed as plain text, never HTML - so nothing a visitor types can inject markup
 into the message I receive.
 
 ---
