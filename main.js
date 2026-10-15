@@ -126,21 +126,44 @@
   }
 
   /* ------------------------------------------------------------------
-   * 5. Forms — POST to the Express endpoints, report inline
+   * 5. Forms — send by the best available route, report inline
    *    Endpoints: POST /submit  (email, message)
    *               POST /submit_rec (email_rec, name_rec, message_rec)
    *
-   * The Express server serves this site and the API together, so posting to
-   * the same origin the page was loaded from is correct in production. A page
-   * opened straight from disk (file://) falls back to the local dev server.
-   * Set window.PORTFOLIO_API first to point at a different backend.
+   * form-delivery.js chooses the route and posts: the Express API whenever it
+   * answers, the form service from api-config.js when it does not — which is
+   * what happens on the published static site. This section only deals with
+   * the visitor: validating, disabling the button, and writing the reply into
+   * the status area.
    * ------------------------------------------------------------------ */
-  var ENDPOINT =
-    typeof window.PORTFOLIO_API === 'string'
-      ? window.PORTFOLIO_API
-      : window.location.protocol === 'file:'
-      ? 'http://localhost:3000'
-      : '';
+
+  /** Build the once-per-page sender from the settings in api-config.js. */
+  function createSender() {
+    if (!window.PortfolioDelivery) return null;
+
+    return window.PortfolioDelivery.createSender({
+      api: window.PORTFOLIO_API,
+      service: window.PORTFOLIO_FORM_ENDPOINT,
+      protocol: window.location.protocol
+    });
+  }
+
+  /** Turn a failed submission into something worth showing a visitor. */
+  function formErrorMessage(error) {
+    if (error && error.name === 'TypeError') {
+      return 'Could not reach the message server. Please check your connection and try again, or email me directly.';
+    }
+
+    // A route that cannot deliver at all — no API here, and no fallback
+    // configured — is a setup problem, not the visitor's mistake, so say so
+    // rather than repeating a bare 404 from the host.
+    var delivery = window.PortfolioDelivery;
+    if (delivery && delivery.isFallbackWarranted(error && error.status)) {
+      return 'The message server is not connected to this copy of the site yet. Please email me directly — the address is in the footer.';
+    }
+
+    return (error && error.message) || 'Something went wrong — please try again.';
+  }
 
   function setStatus(form, state, message) {
     var box = form.querySelector('.form-status');
@@ -157,6 +180,14 @@
 
   function initForms() {
     var forms = document.querySelectorAll('form[data-endpoint]');
+    if (!forms.length) return;
+
+    var send = createSender();
+    if (!send) {
+      console.error('form-delivery.js is missing, so the forms cannot send.');
+      return;
+    }
+
     forms.forEach(function (form) {
       var submit = form.querySelector('button[type="submit"]');
 
@@ -165,9 +196,6 @@
       form.addEventListener('submit', function (event) {
         event.preventDefault();
         clearStatus(form);
-
-        var action = form.dataset.endpoint;
-        var formData = new FormData(form);
 
         // Browsers skip empty fields, so an untouched form sends nothing.
         if (!form.checkValidity()) {
@@ -178,27 +206,20 @@
         if (submit) submit.disabled = true;
         setStatus(form, 'pending', 'Sending…');
 
-        fetch(ENDPOINT + action, { method: 'POST', body: formData })
-          .then(function (response) {
-            return response.text().then(function (body) {
-              if (!response.ok) throw new Error(body || 'Request failed');
-              return body;
-            });
-          })
-          .then(function (body) {
-            setStatus(form, 'sent', body || 'Thank you — your message is with me.');
+        send(form.dataset.endpoint, new FormData(form))
+          .then(function (result) {
+            if (!result.ok) {
+              var failure = new Error(result.body || 'Request failed');
+              failure.status = result.status;
+              throw failure;
+            }
+
+            setStatus(form, 'sent', result.body || 'Thank you — your message is with me.');
             form.reset();
           })
           .catch(function (error) {
             console.error('Form submission failed:', error);
-            var isNetworkError = error && error.name === 'TypeError';
-            setStatus(
-              form,
-              'error',
-              isNetworkError
-                ? 'Could not reach the message server. Please check your connection and try again, or email me directly.'
-                : (error && error.message) || 'Something went wrong — please try again.'
-            );
+            setStatus(form, 'error', formErrorMessage(error));
           })
           .finally(function () {
             if (submit) submit.disabled = false;

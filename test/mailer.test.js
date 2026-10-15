@@ -8,6 +8,20 @@ const mailer = require('../server/mailer');
 
 const CONFIG = { mailFrom: 'portfolio@example.com', mailTo: 'owner@example.com' };
 
+/**
+ * nodemailer's JSON transport writes addresses in its normalised form: either
+ * a plain string or a list of `{ address, name }` objects, depending on the
+ * version. Read back just the addresses, so these assertions describe the
+ * message we compose rather than the transport's serialisation format.
+ *
+ * @param {string | Array<{ address: string }>} value
+ * @returns {string[]}
+ */
+function addresses(value) {
+  const list = Array.isArray(value) ? value : [value];
+  return list.map((entry) => (typeof entry === 'string' ? entry : entry.address));
+}
+
 test('createTransport returns null when SMTP settings are incomplete', () => {
   assert.equal(mailer.createTransport({ host: '', user: '', pass: '' }), null);
   assert.equal(mailer.createTransport({ host: 'smtp.gmail.com', user: 'a', pass: '' }), null);
@@ -36,9 +50,9 @@ test('contactMessage addresses the owner and replies to the visitor', async () =
   const info = await mailer.send(transport, message);
   const sent = JSON.parse(info.message);
 
-  assert.equal(sent.to, 'owner@example.com');
-  assert.equal(sent.from, 'portfolio@example.com');
-  assert.equal(sent.replyTo, 'client@example.com');
+  assert.deepEqual(addresses(sent.to), ['owner@example.com']);
+  assert.deepEqual(addresses(sent.from), ['portfolio@example.com']);
+  assert.deepEqual(addresses(sent.replyTo), ['client@example.com']);
   assert.match(sent.subject, /client@example\.com/);
   assert.match(sent.text, /I would like to work with you\./);
 });
@@ -54,8 +68,8 @@ test('recommendationMessage includes the author name and email', async () => {
   const info = await mailer.send(transport, message);
   const sent = JSON.parse(info.message);
 
-  assert.equal(sent.to, 'owner@example.com');
-  assert.equal(sent.replyTo, 'jane@example.com');
+  assert.deepEqual(addresses(sent.to), ['owner@example.com']);
+  assert.deepEqual(addresses(sent.replyTo), ['jane@example.com']);
   assert.match(sent.subject, /Jane Doe/);
   assert.match(sent.text, /jane@example\.com/);
   assert.match(sent.text, /A pleasure to work with\./);

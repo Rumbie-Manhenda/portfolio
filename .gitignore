@@ -10,6 +10,11 @@ node_modules/
 gitkey
 gitkey.pub
 
+# Scratch files from manual end-to-end checks
+_e2e.manual.js
+_e2e-result.txt
+_test-result.txt
+
 # Python leftovers
 __pycache__/
 *.pyc

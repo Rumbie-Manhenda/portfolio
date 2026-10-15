@@ -1,0 +1,20 @@
+# Keep the build context small, and keep secrets out of the image.
+#
+# Dependencies are installed inside the image from the lockfile, so the local
+# copy is never needed — and it is large.
+node_modules
+
+# Repository plumbing
+.git
+.github
+.gitignore
+
+# Secrets and keys. These must never reach an image layer.
+.env
+*.env
+gitkey
+gitkey.pub
+
+# Scratch files left behind by local runs
+_*.txt
+_imgcheck.ps1
