@@ -271,18 +271,3 @@ they came from.
 
 ## A few loose ends
 
-Honest notes, because leaving them unexplained would be worse than saying them:
-
-- `sketch.js` was the **first version** of the backend: Express writing form submissions
-  into a MySQL database. `server/` replaced it when I moved from storing messages to
-  emailing them. It is gone from the working tree and from tracking now, and survives
-  only in the history, which is where a first attempt belongs.
-- `node_modules/` used to be tracked, committed before the ignore rule existed. It is
-  untracked now, so the repository is small again and — since the Pages workflow
-  publishes the whole folder — no dependency's source is published alongside the site.
-- `mysql` and `body-parser` were declared in `package.json` from that first version, and
-  nothing the server runs imported either. Both are removed now, lockfile included.
-- Leftover scratch files and unused images: `_e2e.manual.js` and `_e2e-result.txt` (a
-  manual end-to-end email check), and older assets no longer referenced by any page —
-  `snow*.jpg`, `profile_image.jpg`, `patty_4.jpg`, `patty_fin.jpg`, `github.png`,
-  `linkedin.png`, `insta logo.jpg`, and `RUMBIDZAI_MANHENDA_CV2024.pdf`.
