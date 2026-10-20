@@ -112,7 +112,7 @@ portfolio/
 ├─ reveal.js        # scroll reveal - generic, reads the theme's motion tokens
 ├─ assets/          # images, generated project covers, video
 │  └─ docs/         # resume_patricia_manhenda_de.pdf - rendered from cv.html;
-│                   # cv-previous-2024.pdf - the earlier CV, kept for reference
+│               
 ├─ server/
 │  ├─ index.js      # entry point (npm start)
 │  ├─ app.js        # builds the Express app: headers, CORS, routes, static site
