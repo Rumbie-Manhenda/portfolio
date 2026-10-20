@@ -1,7 +1,7 @@
 # Dependencies
 node_modules/
 
-# Secrets — never commit these
+# Secrets  Note to self : never commit these patty
 .env
 *.env
 !.env.example

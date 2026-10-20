@@ -1,8 +1,8 @@
 # Patricia Manhenda — portfolio
 
-This is my personal site: four hand-written pages (home, projects, about, cover letter)
-and a small Node/Express backend that serves them and emails the two contact forms
-straight to my inbox.
+This is my personal site: five hand-written pages (home, projects, about, cover letter,
+and the CV itself) and a small Node/Express backend that serves them and emails the two
+contact forms straight to my inbox.
 
 I built it because a CV tells you which tools someone has touched. It does not tell you
 how they think, how they work, or whether they finish things. So the site is the long
@@ -13,12 +13,12 @@ version: the story, the projects, and a way to actually reach me.
 ## The flow, in one pass
 
 Someone lands on `index.html`. The pages are plain HTML styled by two stylesheets and
-brought to life by two small scripts — no framework, no build step.
+brought to life by two small scripts - no framework, no build step.
 
 If they fill in a form, here is what happens:
 
 1. `main.js` catches the submit, builds a `FormData` and hands it to `form-delivery.js`
-   together with the path in the form's `data-endpoint` attribute — `/submit`
+   together with the path in the form's `data-endpoint` attribute - `/submit`
    (email + message) or `/submit_rec` (name + email + recommendation).
 2. `form-delivery.js` posts it to the Express API. `multer` parses the multipart body,
    `rateLimit.js` checks the sender has not been spamming, and `validate.js` trims the
@@ -26,10 +26,10 @@ If they fill in a form, here is what happens:
 3. `mailer.js` composes a plain-text email to me with `replyTo` set to whoever wrote in,
    and hands it to `nodemailer`.
 4. The response comes back as a sentence, and `main.js` writes it into the form's status
-   area — inline, no page reload, no alert box.
+   area - inline, no page reload, no alert box.
 
-Step 2 only works where the Express process is running. GitHub Pages has no process —
-only files — so a POST to `/submit` there is a 404. `form-delivery.js` notices and
+Step 2 only works where the Express process is running. GitHub Pages has no process -
+only files - so a POST to `/submit` there is a 404. `form-delivery.js` notices and
 re-sends the same submission to the form service named in `api-config.js`, which emails
 it straight to me. Same form, same fields, same reply to the visitor; two routes, so it
 works both on my own machine and on the published site.
@@ -39,23 +39,31 @@ their own origin. Nothing has to be configured in the browser. (Open a page stra
 from disk and `form-delivery.js` falls back to `http://localhost:3000`; if the pages are
 ever hosted away from the API, set `window.PORTFOLIO_API` to the backend URL.)
 
----
-
 ## Why it is built this way
 
 **Static HTML/CSS/JS, no framework.** The pages are content, not an application. A
-framework would add a toolchain, a build step and a bundle to download — for four pages
+framework would add a toolchain, a build step and a bundle to download - for five pages
 that are already readable as source. Plain files mean I can open one, change a sentence
 and ship it.
 
 **One theme file, one components file.** `theme.css` is a theme foundation where every
 colour, radius, shadow, font and motion value is a `--tp-*` token. `style.css` holds the
-components (nav, hero, cards, forms, footer) and consumes those tokens exclusively — it
+components (nav, hero, cards, forms, footer) and consumes those tokens exclusively - it
 never hard-codes a value. The practical pay-off: re-branding the whole site is changing
 one number. The palette is generated from a single hue (`--tp-h`), so moving it moves the
 entire accent scheme with it. It also gives the site one consistent notion of motion,
 which `reveal.js` reads from (`--tp-reveal`, `--tp-dur-slow`, `--tp-stagger`) so the
 scroll animations stay in step with the theme instead of being sprinkled in by hand.
+
+**The CV is a page, not just a PDF.** `cv.html` is built from the same tokens as
+everything else, so it reads as part of the site rather than a document dropped into it -
+and `cv.css` carries its own print stylesheet on top: the nav, footer and action bar
+disappear, the two screen columns flatten to one, the type tightens, and the skill lists
+split into two columns so the sheet lands on two A4 pages instead of three. "Print / save
+as PDF" in the browser and the download in `assets/docs/` are therefore the same
+document: the PDF is rendered from this page with headless Chrome, so the CV and the site
+cannot drift apart - change the page, re-render the PDF. (P.S. It took me forever to make
+this work haha.)
 
 **Express, serving the site and the API together.** One process, one origin, one deploy.
 Running a separate static host would have meant CORS configuration, a second deployment
@@ -69,21 +77,22 @@ turns "reply" into a single click. Fewer moving parts, less to maintain, and no 
 other people's messages to look after.
 
 **Multer, but also urlencoded.** Browsers send `FormData` as multipart, so the routes
-parse that. They also parse plain form posts — so if JavaScript fails or is disabled, the
+parse that. They also parse plain form posts - so if JavaScript fails or is disabled, the
 form still works as an ordinary HTML post. Same validation, same email.
 
 **Validation, rate limiting and a static guard.** These are small files doing one job
-each, because a public form is the only place a stranger can push data into my server:
+each, because a public form is the only place a stranger can push data into my server.
+To keep it that way:
 
-- `validate.js` — trims, strips control characters, enforces limits (email 254, message
+- `validate.js` - trims, strips control characters, enforces limits (email 254, message
   5000, name 120) and returns a plain result the route acts on.
-- `rateLimit.js` — an in-memory bucket per IP address, 10 submissions per 10 minutes,
+- `rateLimit.js` - an in-memory bucket per IP address, 10 submissions per 10 minutes,
   self-cleaning so the map cannot grow forever.
-- `staticGuard.js` — the site folder also holds the server's own source and the package
+- `staticGuard.js` - the site folder also holds the server's own source and the package
   manifest. This middleware returns 404 for all of it, before `express.static` ever gets
   a look, so serving the site never means serving the backend.
 
-Emails are composed as plain text, never HTML — nothing a visitor types can inject markup
+Emails are composed as plain text, never HTML - nothing a visitor types can inject markup
 into the message I receive.
 
 ---
@@ -92,14 +101,18 @@ into the message I receive.
 
 ```
 portfolio/
-├─ index.html, projects.html, aboutme.html, coverletter.html   # the four pages
+├─ index.html, projects.html, aboutme.html, coverletter.html   # the site pages
+├─ cv.html          # the CV: same tokens, two columns on screen, A4 when printed
 ├─ theme.css        # design tokens (--tp-*), keyframes, palette from one hue
 ├─ style.css        # components, built only on those tokens
+├─ cv.css           # the CV sheet, and its print stylesheet
 ├─ main.js          # nav drawer, skill bars, counters, footer year, form wiring
 ├─ form-delivery.js # chooses the form's route (API, then the service) and posts
 ├─ api-config.js    # the one place the forms' API URL and fallback are set
-├─ reveal.js        # scroll reveal — generic, reads the theme's motion tokens
-├─ assets/          # images, generated project covers, video, CV PDF
+├─ reveal.js        # scroll reveal - generic, reads the theme's motion tokens
+├─ assets/          # images, generated project covers, video
+│  └─ docs/         # resume_patricia_manhenda_de.pdf - rendered from cv.html;
+│                   # cv-previous-2024.pdf - the earlier CV, kept for reference
 ├─ server/
 │  ├─ index.js      # entry point (npm start)
 │  ├─ app.js        # builds the Express app: headers, CORS, routes, static site
@@ -146,7 +159,7 @@ silently swallows messages is worse than one that admits it is not connected.
 
 In the browser that 503 is not the end of it. `form-delivery.js` reads it as "this route
 cannot deliver" and re-sends the message to the form service instead, so the visitor
-still gets their message through — which is why the site works even before any of this
+still gets their message through - which is why the site works even before any of this
 is configured.
 
 ### Configuration
@@ -193,13 +206,13 @@ every push to `main`, uploads the repository as an artifact, and hands it to Git
 Pages.
 
 Worth being explicit about what that workflow does, because it is easy to miss: it
-uploads **`path: '.'`** — the *entire* repository — and publishes it at a public URL.
+uploads **`path: '.'`** - the *entire* repository - and publishes it at a public URL.
 Whatever is committed here becomes downloadable, not just the pages. `staticGuard` does
 not help, because on Pages nothing is running but a plain file server; that middleware
 only guards the site when Express is the thing serving it.
 
 So: keep `server/`, `node_modules/`, `.env` and any key or credential out of what gets
-published — either by narrowing the workflow's `path` to just the pages and `assets/`, or
+published - either by narrowing the workflow's `path` to just the pages and `assets/`, or
 by keeping them out of the repository in the first place.
 
 **The API** is a Node process, and Pages cannot run it, so it needs a host of its own.
@@ -213,7 +226,7 @@ There are two routes, and the forms use whichever one is available. Route A need
 account and no server; Route B uses my own SMTP account and needs the Express API to be
 running somewhere.
 
-**Route A — the form service (works today, on GitHub Pages).**
+**Route A - the form service (works today, on GitHub Pages).**
 `api-config.js` already points at it. The only setup is a one-time confirmation:
 
 1. Submit the form once, from the published site.
@@ -222,9 +235,9 @@ running somewhere.
 3. Every message after that is delivered to that inbox.
 
 Nothing is required from a visitor, and no server is involved. To switch the fallback
-off, set `window.PORTFOLIO_FORM_ENDPOINT = ''` — the forms then need Route B.
+off, set `window.PORTFOLIO_FORM_ENDPOINT = ''` - the forms then need Route B.
 
-**Route B — the API and my own SMTP account.**
+**Route B - the API and my own SMTP account.**
 
 Three steps, in order.
 
@@ -261,9 +274,9 @@ Commit and push, so Pages republishes with the new value.
 Nothing fails silently if a step is missed: `/health` reports `emailConfigured: false`,
 and the API answers a submission with a 503. With Route A still configured that 503 just
 hands the message to the form service, so Route B failing over is invisible to the
-visitor — check `/health` when you want to be sure the API itself is the one sending.
+visitor - check `/health` when you want to be sure the API itself is the one sending.
 
-Deploying the whole folder to one Node host instead — API and pages on the same origin —
+Deploying the whole folder to one Node host instead - API and pages on the same origin -
 needs neither setting. Leave `window.PORTFOLIO_API` empty and the forms post to the page
 they came from.
 
@@ -271,3 +284,12 @@ they came from.
 
 ## A few loose ends
 
+Honest notes, because leaving them unexplained would be worse than saying them:
+
+- `sketch.js` was the **first version** of the backend: Express writing form submissions
+  into a MySQL database. `server/` replaced it when I moved from storing messages to
+  emailing them. It is gone from the working tree and from tracking now, and survives
+  only in the history, which is where a first attempt belongs.
+- `node_modules/` used to be tracked, committed before the ignore rule existed. It is
+  untracked now, so the repository is small again and - since the Pages workflow
+  publishes the whole folder - no dependency's source is published alongside the site.

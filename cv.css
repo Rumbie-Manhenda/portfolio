@@ -1,0 +1,421 @@
+/* ==========================================================================
+   CV — printable résumé page (Studio Kiln)
+   Consumes var(--tp-*) tokens from theme.css only.
+   Screen: a paper card inside the site.  Print: a flat A4 sheet.
+   ========================================================================== */
+
+.cv-stage{
+  padding-top:clamp(112px, 14vw, 156px);
+  padding-bottom:clamp(40px, 6vw, 80px);
+}
+
+.cv-bar{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:20px;
+}
+
+.cv-bar__note{
+  font-family:var(--tp-font-mono);
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--tp-mute);
+}
+
+/* ---------------------------------------------------------------- the sheet */
+.cv{
+  max-width:1040px;
+  margin-inline:auto;
+  padding:clamp(24px, 4.2vw, 52px);
+  background:var(--tp-surf);
+  border:var(--tp-bw) solid var(--tp-line);
+  border-radius:var(--tp-r-lg);
+  box-shadow:var(--tp-sh);
+}
+
+.cv__masthead{
+  display:grid;
+  grid-template-columns:auto minmax(0, 1fr);
+  gap:clamp(18px, 3vw, 32px);
+  align-items:center;
+  padding-bottom:22px;
+  border-bottom:var(--tp-bw) solid var(--tp-line);
+}
+
+.cv__photo{
+  width:clamp(96px, 13vw, 132px);
+  aspect-ratio:1 / 1;
+  overflow:hidden;
+  border-radius:var(--tp-r);
+  background:var(--tp-grad);
+  filter:var(--tp-img-filter);
+  flex:none;
+}
+
+.cv__photo img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
+
+.cv__name{font-size:clamp(28px, 4.4vw, 44px);line-height:1.05}
+
+.cv__role{
+  margin-top:8px;
+  font-family:var(--tp-font-mono);
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--tp-acc);
+}
+
+.cv__contact{
+  margin-top:14px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 16px;
+  font-family:var(--tp-font-mono);
+  font-size:12px;
+  color:var(--tp-mute);
+}
+
+.cv__contact a:hover{color:var(--tp-acc)}
+
+.cv__contact li{display:inline-flex;align-items:center;gap:7px}
+
+.cv__contact li::before{
+  content:"";
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--tp-acc);
+  flex:none;
+}
+
+.cv__intro{
+  margin-top:20px;
+  font-size:15.5px;
+  line-height:1.72;
+  color:var(--tp-ink);
+  max-width:78ch;
+}
+
+/* ------------------------------------------------------------ body columns */
+.cv__body{
+  display:grid;
+  grid-template-columns:minmax(0, 1.42fr) minmax(0, 1fr);
+  gap:clamp(22px, 3.4vw, 44px);
+  margin-top:26px;
+  align-items:start;
+}
+
+.cv__col{display:flex;flex-direction:column;gap:26px}
+
+.cv-section{display:flex;flex-direction:column;gap:14px}
+
+.cv-section__title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-family:var(--tp-font-mono);
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--tp-mute);
+}
+
+.cv-section__title::after{
+  content:"";
+  flex:1;
+  height:var(--tp-bw);
+  background:var(--tp-line);
+}
+
+/* ---------------------------------------------------------------- entries */
+.cv-entry{display:flex;flex-direction:column;gap:7px}
+.cv-entry+.cv-entry{margin-top:16px}
+
+.cv-entry__top{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.cv-entry__role{font-size:18px}
+
+.cv-entry__dates{
+  font-family:var(--tp-font-mono);
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--tp-mute);
+  white-space:nowrap;
+}
+
+.cv-entry__org{
+  font-family:var(--tp-font-mono);
+  font-size:12px;
+  color:var(--tp-acc);
+}
+
+.cv-entry__copy{font-size:14.5px;line-height:1.62;color:var(--tp-mute)}
+
+.cv-points{display:flex;flex-direction:column;gap:7px;margin-top:2px}
+
+.cv-points li{
+  position:relative;
+  padding-left:18px;
+  font-size:14px;
+  line-height:1.6;
+  color:var(--tp-mute);
+}
+
+.cv-points li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:8px;
+  width:7px;
+  height:var(--tp-bw);
+  background:var(--tp-acc);
+}
+
+/* --------------------------------------------------------------- projects */
+.cv-project{
+  padding:14px 0;
+  border-top:var(--tp-bw) solid var(--tp-line);
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.cv-project:first-of-type{border-top:0;padding-top:0}
+.cv-project:last-of-type{padding-bottom:0}
+
+.cv-project__top{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.cv-project__name{font-size:16px}
+
+.cv-project__link{
+  font-family:var(--tp-font-mono);
+  font-size:11px;
+  letter-spacing:.06em;
+  color:var(--tp-mute);
+  transition:color var(--tp-dur) var(--tp-ease);
+}
+
+.cv-project__link:hover{color:var(--tp-acc)}
+
+.cv-project p{font-size:13.5px;line-height:1.6;color:var(--tp-mute)}
+
+/* ----------------------------------------------------------------- skills */
+.cv-skill{display:flex;flex-direction:column;gap:6px}
+.cv-skill+.cv-skill{margin-top:12px}
+
+.cv-skill__row{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:12px;
+  font-size:14px;
+}
+
+.cv-skill__row b{
+  font-family:var(--tp-font-mono);
+  font-size:11px;
+  font-weight:400;
+  color:var(--tp-mute);
+}
+
+.cv-skill__track{
+  height:4px;
+  border-radius:var(--tp-r-btn);
+  background:var(--tp-surf-2);
+  overflow:hidden;
+}
+
+.cv-skill__fill{
+  height:100%;
+  width:var(--pct, 0%);
+  border-radius:var(--tp-r-btn);
+  background:var(--tp-grad);
+}
+
+.cv-tags{display:flex;flex-wrap:wrap;gap:7px}
+
+.cv-tag{
+  display:inline-flex;
+  align-items:center;
+  padding:5px 11px;
+  border-radius:var(--tp-r-btn);
+  background:var(--tp-surf-2);
+  border:var(--tp-bw) solid var(--tp-line);
+  font-size:12px;
+  white-space:nowrap;
+}
+
+.cv-list{display:flex;flex-direction:column;gap:8px}
+
+/* Label and value share a line, but on a narrow screen the value drops
+   beneath the label instead of holding the row wider than the viewport. */
+.cv-list li{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:4px 12px;
+  font-size:13.5px;
+  color:var(--tp-mute);
+}
+
+.cv-list li b{
+  font-weight:400;
+  font-family:var(--tp-font-mono);
+  font-size:11px;
+  color:var(--tp-ink);
+  white-space:nowrap;
+}
+
+.cv-copy{font-size:13.5px;line-height:1.62;color:var(--tp-mute)}
+
+.cv-facts{
+  display:grid;
+  gap:12px;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  margin-top:26px;
+  padding-top:22px;
+  border-top:var(--tp-bw) solid var(--tp-line);
+}
+
+.cv-facts div{display:flex;flex-direction:column;gap:4px}
+
+.cv-facts dt{
+  font-family:var(--tp-font-mono);
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--tp-mute);
+}
+
+.cv-facts dd{margin:0;font-size:14px}
+
+/* ------------------------------------------------------------- responsive */
+@media (max-width:900px){
+  .cv__body{grid-template-columns:minmax(0, 1fr);gap:28px}
+}
+
+/* The bar's buttons hold a max-content width of their own; on a phone that
+   would widen the whole document, so the bar stacks and the buttons fill it. */
+@media (max-width:760px){
+  .cv-bar{flex-direction:column;align-items:stretch;gap:12px}
+  .cv-bar .actions{width:100%}
+  .cv-bar .actions .btn{width:100%}
+}
+
+@media (max-width:600px){
+  .cv__masthead{grid-template-columns:minmax(0, 1fr);gap:16px}
+  .cv__photo{width:104px}
+  .cv-facts{grid-template-columns:minmax(0, 1fr)}
+  .cv-entry__dates{white-space:normal}
+  .cv-skill__row,.cv-project__top{flex-wrap:wrap}
+}
+
+/* -------------------------------------------------------------------- print */
+@page{size:A4 portrait;margin:11mm 10mm 12mm}
+
+@media print{
+  html,body{
+    background:#fff !important;
+    color:#1d1813 !important;
+    font-size:10.4pt;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+
+  .kiln-bg,
+  .site-nav,
+  .nav-drawer,
+  .site-footer,
+  .skip-link,
+  .cv-bar{display:none !important}
+
+  .cv-stage{padding:0 !important}
+
+  .cv{
+    max-width:none;
+    margin:0;
+    padding:0;
+    background:#fff;
+    border:0;
+    border-radius:0;
+    box-shadow:none;
+  }
+
+  /* A grid cannot fragment across pages without wasting whole pages,
+     so the printed sheet flows as one column instead. */
+  .cv__body{display:block;margin-top:14px}
+  .cv__col{display:block}
+  .cv__col+.cv__col{margin-top:16px}
+
+  .cv__name{font-size:19pt}
+  .cv__role{font-size:8pt;letter-spacing:.09em;margin-top:5px}
+  .cv__contact{font-size:8pt;gap:3px 13px;margin-top:9px}
+  .cv__intro{font-size:9.2pt;line-height:1.42;margin-top:9px}
+
+  .cv__masthead{gap:16px;padding-bottom:9px}
+  .cv__photo{width:66px;filter:none}
+
+  .cv__body{margin-top:12px}
+  .cv-section{gap:9px;margin-top:12px}
+
+  .cv-entry{gap:3px}
+  .cv-entry+.cv-entry{margin-top:9px}
+  .cv-entry__role{font-size:10.6pt}
+  .cv-entry__dates,.cv-entry__org,.cv-section__title{font-size:7.4pt}
+  .cv-entry__copy,.cv-points li{font-size:9pt;line-height:1.4}
+  .cv-points{gap:3px}
+  .cv-points li{padding-left:12px}
+  .cv-points li::before{top:5px;width:5px}
+
+  .cv-project{padding:7px 0;gap:2px}
+  .cv-project__name{font-size:9.8pt}
+  .cv-project p{font-size:8.8pt;line-height:1.4}
+  .cv-project__link{font-size:7.2pt}
+
+  /* two columns keep the skill lists short enough to stay on one page */
+  .cv-skill-grid{columns:2;column-gap:24px}
+  .cv-skill{break-inside:avoid;page-break-inside:avoid}
+  .cv-skill+.cv-skill{margin-top:6px}
+  .cv-skill__row{font-size:8.8pt}
+  .cv-skill__row b{font-size:7.4pt}
+  .cv-skill__track{height:2px;background:#e6dcd0}
+
+  .cv-tags{columns:2;column-gap:24px;gap:0}
+  .cv-tag{font-size:8.2pt;padding:2px 8px;background:#f2ece2;break-inside:avoid}
+  .cv-copy,.cv-list li{font-size:8.8pt}
+  .cv-list{gap:5px}
+  .cv-list li b{font-size:7.4pt}
+
+  .cv-facts{margin-top:16px;padding-top:12px;gap:10px}
+  .cv-facts dd{font-size:9.4pt}
+  .cv-facts dt{font-size:7.4pt}
+
+  /* keep small blocks whole across page breaks; sections may split */
+  .cv-entry,
+  .cv-project,
+  .cv-facts{break-inside:avoid;page-break-inside:avoid}
+
+  .cv-section{display:block;gap:0}
+  .cv-section+.cv-section{margin-top:13px}
+  .cv-section__title{margin-bottom:7px}
+
+  a{text-decoration:none;color:inherit}
+}
