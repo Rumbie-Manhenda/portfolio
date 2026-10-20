@@ -1,4 +1,4 @@
-# Patricia Manhenda — portfolio
+# Patricia Manhenda - portfolio
 
 This is my personal site: five hand-written pages (home, projects, about, cover letter,
 and the CV itself) and a small Node/Express backend that serves them and emails the two
