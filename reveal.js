@@ -43,9 +43,25 @@
           el.style.animation = name + ' ' + dur + ' ' + ease + ' ' + Math.round(index * stagger) + 'ms both';
           o.unobserve(el);
         });
-      }, { root: scroller, threshold: 0.2 });
+      /* Any sliver entering the viewport is enough: a tall block (a full letter,
+         a long list) can never reach a fixed ratio on a short screen. */
+      }, { root: scroller, threshold: 0, rootMargin: '0px 0px -64px 0px' });
       els.forEach(function (el) { o.observe(el); });
       observers.push(o);
+
+      /* Safety net for panels already on screen that the observer has not
+         reported — a tall block inside a frame, a restored scroll position.
+         They appear without the animation rather than staying blank. */
+      window.setTimeout(function () {
+        els.forEach(function (el) {
+          if (el.style.opacity !== '0') return;
+          var box = el.getBoundingClientRect();
+          if (box.top < window.innerHeight && box.bottom > 0) {
+            el.style.opacity = '';
+            el.style.animation = 'none';
+          }
+        });
+      }, 1200);
     });
 
     return function () { observers.forEach(function (o) { o.disconnect(); }); };

@@ -30,9 +30,10 @@
         <a href="projects.html">Projects</a>
         <a href="aboutme.html">About</a>
         <a href="coverletter.html">Cover letter</a>
+        <a href="cv.html" aria-current="page">CV</a>
       </nav>
 
-      <a class="nav-pill__cta" href="cv.html" aria-current="page">CV</a>
+      <a class="nav-pill__cta" href="assets/docs/resume_patricia_manhenda_de.pdf" target="_blank" rel="noopener">Download CV</a>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Toggle navigation">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -75,39 +76,53 @@
 
           <!-- ---------------------------- masthead --------------------------- -->
           <header class="cv__masthead">
-            <div class="cv__photo">
-              <img src="assets/images/patty.jpg" alt="Patricia Manhenda" width="900" height="1125">
+            <div class="cv__head-row">
+              <div class="cv__photo">
+                <img src="assets/images/patty.jpg" alt="Patricia Manhenda" width="900" height="1125">
+              </div>
+
+              <div class="cv__ident">
+                <p class="cv__kicker">Curriculum vitae</p>
+                <h1 class="cv__name">Patricia R. Manhenda</h1>
+                <p class="cv__role">Software and ML engineer, machine learning, deep learning, backend</p>
+              </div>
+
+              <dl class="cv-facts">
+                <div>
+                  <dt>Availability</dt>
+                  <dd>14 days notice</dd>
+                </div>
+                <div>
+                  <dt>Work permits</dt>
+                  <dd>Greece, EU remote</dd>
+                </div>
+                <div>
+                  <dt>Relocation</dt>
+                  <dd>Open, with sponsorship</dd>
+                </div>
+              </dl>
             </div>
 
-            <div>
-              <h1 class="cv__name">Patricia R. Manhenda</h1>
-              <p class="cv__role">Software & ML engineer · Machine learning · Deep learning · Backend</p>
-
-              <ul class="cv__contact">
-                <li>Athens, Greece</li>
-                <li><a href="mailto:pattymcharis15@gmail.com">pattymcharis15@gmail.com</a></li>
-                <li><a href="tel:+306945790539">+30 694 579 0539</a></li>
-                <li><a href="https://github.com/Rumbie-Manhenda" target="_blank" rel="noopener">github.com/Rumbie-Manhenda</a></li>
-                <li><a href="https://www.linkedin.com/in/patricia-manhenda-6818131b9/" target="_blank" rel="noopener">linkedin.com/in/patricia-manhenda</a></li>
-              </ul>
-            </div>
+            <ul class="cv__contact">
+              <li><span>Athens, Greece</span></li>
+              <li><a href="mailto:pattymcharis15@gmail.com">pattymcharis15@gmail.com</a></li>
+              <li><a href="tel:+306945790539">+30 694 579 0539</a></li>
+              <li><a href="https://github.com/Rumbie-Manhenda" target="_blank" rel="noopener">github.com/Rumbie-Manhenda</a></li>
+              <li><a href="https://www.linkedin.com/in/patricia-manhenda-6818131b9/" target="_blank" rel="noopener">linkedin.com/in/patricia-manhenda</a></li>
+            </ul>
           </header>
 
-          <p class="cv__intro">
-            I build machine-learning systems end to end: preparing the data, training and
-            evaluating the model, then shipping the API and the interface around it. First-Class
-            Honours in Computer Science, specialising in Machine Learning and Neural Networks,
-            from the University of London. Currently a network operations engineer at Optasia in
-            Athens, and studying how technology meets society at the University of Athens.
-            Comfortable across Python, JavaScript and SQL, and with the tools that carry a model
-            out of the notebook - TensorFlow, Keras, Docker, Git.
+          <p class="cv__lede">
+            I build machine-learning systems end to end: preparing the data, training and evaluating the model, 
+            then shipping the API and the interface around it. 
+            Currently a network operations engineer at Optasia, and studying how technology meets society.
           </p>
 
           <!-- ------------------------------ body ----------------------------- -->
           <div class="cv__body">
 
             <!-- =========================== main column ======================= -->
-            <div class="cv__col">
+            <div class="cv__main">
 
               <section class="cv-section">
                 <h2 class="cv-section__title">Experience</h2>
@@ -121,7 +136,7 @@
                   <ul class="cv-points">
                     <li>Monitor production systems and operational data in Grafana and Nagios, catching anomalies before they become incidents.</li>
                     <li>Investigate incidents and run root-cause analysis across event-driven processes and technical infrastructure.</li>
-                    <li>Work to structured escalation, incident documentation and SLA-based workflows, so a fix is repeatable rather than improvised.</li>
+                    <li>Work to structured escalation, documentation and SLA-based workflows, so a fix is repeatable rather than improvised.</li>
                   </ul>
                 </article>
 
@@ -133,8 +148,7 @@
                   <p class="cv-entry__org">Scale Outlier · Remote</p>
                   <ul class="cv-points">
                     <li>Designed and refined LLM prompts to improve model performance on complex technical and business tasks.</li>
-                    <li>Evaluated AI-generated outputs against project benchmarks, identifying quality, reasoning and alignment problems.</li>
-                    <li>Applied few-shot prompting and structured evaluation to improve consistency and data efficiency.</li>
+                    <li>Evaluated AI output against project benchmarks, then applied few-shot prompting and structured evaluation to improve consistency.</li>
                   </ul>
                 </article>
 
@@ -157,7 +171,7 @@
                   </div>
                   <p class="cv-entry__org">Webhelp · EU remote</p>
                   <ul class="cv-points">
-                    <li>Supported B2B clients with technical troubleshooting, order management and issue resolution using SAP, Salesforce and Excel.</li>
+                    <li>Supported B2B clients with technical troubleshooting and issue resolution using SAP, Salesforce and Excel.</li>
                     <li>Investigated operational data to identify process bottlenecks and automation opportunities.</li>
                   </ul>
                 </article>
@@ -169,179 +183,117 @@
                   </div>
                   <p class="cv-entry__org">Herald Publishing House · Harare, Zimbabwe</p>
                   <ul class="cv-points">
-                    <li>Developed and evaluated machine-learning models of customer behaviour to generate business insight.</li>
-                    <li>Cleaned, analysed and visualised data in Python, turning raw records into decisions the business could act on.</li>
-                    <li>Resolved data-quality issues to make management reporting trustworthy again.</li>
+                    <li>Built and evaluated machine-learning models of customer behaviour to generate business insight.</li>
+                    <li>Cleaned, analysed and visualised data in Python, and resolved data-quality issues behind management reporting.</li>
                   </ul>
                 </article>
               </section>
-<section class="cv-section">
+
+              <section class="cv-section">
                 <h2 class="cv-section__title">Selected projects</h2>
 
-                <article class="cv-project">
-                  <div class="cv-project__top">
-                    <h3 class="cv-project__name">Aircraft Predictive Maintenance</h3>
-                    <a class="cv-project__link" href="https://github.com/Rumbie-Manhenda/Predictive-Maintenance-for-Aircraft" target="_blank" rel="noopener">github</a>
-                  </div>
-                  <p>Deep learning over sensor telemetry to anticipate which component fails next, turning scheduled maintenance into predicted maintenance.</p>
-                </article>
+                <div class="cv-projects">
+                  <article class="cv-project">
+                    <h3 class="cv-project__name">
+                      <a href="https://github.com/Rumbie-Manhenda/Predictive-Maintenance-for-Aircraft" target="_blank" rel="noopener">Aircraft Predictive Maintenance</a>
+                    </h3>
+                    <p>Deep learning over sensor telemetry, anticipating which component fails next.</p>
+                    <p class="cv-project__stack">TensorFlow · LSTM</p>
+                  </article>
 
-                <article class="cv-project">
-                  <div class="cv-project__top">
-                    <h3 class="cv-project__name">Intrusion Detection System</h3>
-                    <a class="cv-project__link" href="https://github.com/Rumbie-Manhenda/INTRUSION-DETECTION-SYSTEM" target="_blank" rel="noopener">github</a>
-                  </div>
-                  <p>Classifying network traffic to separate hostile patterns from ordinary noise, so a compromised host is caught early rather than after the fact.</p>
-                </article>
+                  <article class="cv-project">
+                    <h3 class="cv-project__name">
+                      <a href="https://github.com/Rumbie-Manhenda/INTRUSION-DETECTION-SYSTEM" target="_blank" rel="noopener">Intrusion Detection System</a>
+                    </h3>
+                    <p>Classifying network traffic to catch a compromised host early rather than after the fact.</p>
+                    <p class="cv-project__stack">Python · scikit-learn</p>
+                  </article>
 
-                <article class="cv-project">
-                  <div class="cv-project__top">
-                    <h3 class="cv-project__name">Disease Prediction from Symptoms</h3>
-                    <a class="cv-project__link" href="https://github.com/Rumbie-Manhenda/DEEL-LEARNING-ON-MEDICAL-DATASET" target="_blank" rel="noopener">github</a>
-                  </div>
-                  <p>A classification model that predicts the likely condition from a set of reported symptoms, trained and evaluated on a medical symptom dataset.</p>
-                </article>
+                  <article class="cv-project">
+                    <h3 class="cv-project__name">
+                      <a href="https://github.com/Rumbie-Manhenda/DEEL-LEARNING-ON-MEDICAL-DATASET" target="_blank" rel="noopener">Disease Prediction from Symptoms</a>
+                    </h3>
+                    <p>Predicting the likely condition from a set of reported symptoms, trained on medical data.</p>
+                    <p class="cv-project__stack">Keras · classification</p>
+                  </article>
 
-                <article class="cv-project">
-                  <div class="cv-project__top">
-                    <h3 class="cv-project__name">A Secure, API-Driven Raffle System</h3>
-                    <a class="cv-project__link" href="https://github.com/Rumbie-Manhenda/RESTFULRAFFLE" target="_blank" rel="noopener">github</a>
-                  </div>
-                  <p>A Django REST API that brings fairness, security and transparency to digital raffles - the whole lifecycle, from ticket allocation and verification codes to random winner selection.</p>
-                </article>
+                  <article class="cv-project">
+                    <h3 class="cv-project__name">
+                      <a href="https://github.com/Rumbie-Manhenda/RESTFULRAFFLE" target="_blank" rel="noopener">A Secure, API-Driven Raffle System</a>
+                    </h3>
+                    <p>Fair, transparent raffles end to end: ticket allocation, verification codes, random winner selection.</p>
+                    <p class="cv-project__stack">Django REST · API</p>
+                  </article>
 
-                <article class="cv-project">
-                  <div class="cv-project__top">
-                    <h3 class="cv-project__name">The Portfolio Itself</h3>
-                    <a class="cv-project__link" href="https://github.com/Rumbie-Manhenda/portfolio" target="_blank" rel="noopener">github</a>
-                  </div>
-                  <p>Four hand-written pages on a token-driven stylesheet, plus an Express backend that validates, rate-limits and emails the contact forms - covered by tests for the routing, the validation and the mailer.</p>
-                </article>
+                  <article class="cv-project">
+                    <h3 class="cv-project__name">
+                      <a href="https://github.com/Rumbie-Manhenda/portfolio" target="_blank" rel="noopener">The Portfolio Itself</a>
+                    </h3>
+                    <p>Four hand-written pages on a token-driven stylesheet, with an Express backend behind the contact forms.</p>
+                    <p class="cv-project__stack">JavaScript · Express</p>
+                  </article>
 
-                <article class="cv-project">
-                  <div class="cv-project__top">
-                    <h3 class="cv-project__name">Neat Narrative Website</h3>
-                    <a class="cv-project__link" href="https://rumbie-manhenda.github.io/neat-narrative-website/index.html" target="_blank" rel="noopener">live site</a>
-                  </div>
-                  <p>A fully responsive, minimal cleaning-services site built with HTML, CSS, Bootstrap and JavaScript, published on GitHub Pages.</p>
-                </article>
+                  <article class="cv-project">
+                    <h3 class="cv-project__name">
+                      <a href="https://rumbie-manhenda.github.io/neat-narrative-website/index.html" target="_blank" rel="noopener">Neat Narrative Website</a>
+                    </h3>
+                    <p>A responsive, minimal cleaning-services site, published on GitHub Pages.</p>
+                    <p class="cv-project__stack">HTML · Bootstrap</p>
+                  </article>
+                </div>
               </section>
 
             </div>
 
             <!-- =========================== side column ======================= -->
-            <div class="cv__col">
+            <aside class="cv__rail">
 
               <section class="cv-section">
-                <h2 class="cv-section__title">Programming languages</h2>
-                <div class="cv-skill-grid">
-                  <div class="cv-skill" style="--pct:95%">
-                    <div class="cv-skill__row"><span>Python</span><b>95%</b></div>
-                    <div class="cv-skill__track"><div class="cv-skill__fill"></div></div>
+                <h2 class="cv-section__title">Toolkit</h2>
+                <dl class="cv-tools">
+                  <div>
+                    <dt>Languages</dt>
+                    <dd>Python · JavaScript · SQL · HTML & CSS · React</dd>
                   </div>
-                  <div class="cv-skill" style="--pct:85%">
-                    <div class="cv-skill__row"><span>JavaScript</span><b>85%</b></div>
-                    <div class="cv-skill__track"><div class="cv-skill__fill"></div></div>
+                  <div>
+                    <dt>Machine learning</dt>
+                    <dd>TensorFlow · Keras · scikit-learn · Pandas · NumPy</dd>
                   </div>
-                  <div class="cv-skill" style="--pct:90%">
-                    <div class="cv-skill__row"><span>HTML5 & CSS</span><b>90%</b></div>
-                    <div class="cv-skill__track"><div class="cv-skill__fill"></div></div>
+                  <div>
+                    <dt>Backend & data</dt>
+                    <dd>Django · Flask · Node.js · Express · REST APIs · MySQL · PostgreSQL · NoSQL</dd>
                   </div>
-                  <div class="cv-skill" style="--pct:70%">
-                    <div class="cv-skill__row"><span>React</span><b>70%</b></div>
-                    <div class="cv-skill__track"><div class="cv-skill__fill"></div></div>
+                  <div>
+                    <dt>Platform & ops</dt>
+                    <dd>Docker · AWS · Azure · Linux · Git & GitHub · Grafana · Prometheus · Nagios</dd>
                   </div>
-                </div>
-              </section>
-<section class="cv-section">
-                <h2 class="cv-section__title">Frameworks & libraries</h2>
-                <div class="cv-skill-grid">
-                  <div class="cv-skill" style="--pct:95%">
-                    <div class="cv-skill__row"><span>TensorFlow</span><b>95%</b></div>
-                    <div class="cv-skill__track"><div class="cv-skill__fill"></div></div>
+                  <div>
+                    <dt>Also</dt>
+                    <dd>Jupyter · Google Colab · Bootstrap · jQuery · SAP · Salesforce</dd>
                   </div>
-                  <div class="cv-skill" style="--pct:95%">
-                    <div class="cv-skill__row"><span>Keras</span><b>95%</b></div>
-                    <div class="cv-skill__track"><div class="cv-skill__fill"></div></div>
-                  </div>
-                  <div class="cv-skill" style="--pct:90%">
-                    <div class="cv-skill__row"><span>MySQL & MariaDB</span><b>90%</b></div>
-                    <div class="cv-skill__track"><div class="cv-skill__fill"></div></div>
-                  </div>
-                  <div class="cv-skill" style="--pct:85%">
-                    <div class="cv-skill__row"><span>Git & GitHub</span><b>85%</b></div>
-                    <div class="cv-skill__track"><div class="cv-skill__fill"></div></div>
-                  </div>
-                  <div class="cv-skill" style="--pct:70%">
-                    <div class="cv-skill__row"><span>Node.js & Express</span><b>70%</b></div>
-                    <div class="cv-skill__track"><div class="cv-skill__fill"></div></div>
-                  </div>
-                  <div class="cv-skill" style="--pct:80%">
-                    <div class="cv-skill__row"><span>Docker</span><b>80%</b></div>
-                    <div class="cv-skill__track"><div class="cv-skill__fill"></div></div>
-                  </div>
-                  <div class="cv-skill" style="--pct:80%">
-                    <div class="cv-skill__row"><span>Bootstrap & jQuery</span><b>80%</b></div>
-                    <div class="cv-skill__track"><div class="cv-skill__fill"></div></div>
-                  </div>
-                  <div class="cv-skill" style="--pct:80%">
-                    <div class="cv-skill__row"><span>Microsoft Azure</span><b>80%</b></div>
-                    <div class="cv-skill__track"><div class="cv-skill__fill"></div></div>
-                  </div>
-                </div>
-              </section>
-
-              <section class="cv-section">
-                <h2 class="cv-section__title">Also working with</h2>
-                <div class="cv-tags">
-                  <span class="cv-tag">SQL & PostgreSQL</span>
-                  <span class="cv-tag">NoSQL</span>
-                  <span class="cv-tag">Pandas & NumPy</span>
-                  <span class="cv-tag">scikit-learn</span>
-                  <span class="cv-tag">Django & Flask</span>
-                  <span class="cv-tag">REST APIs</span>
-                  <span class="cv-tag">AWS</span>
-                  <span class="cv-tag">Google Colab</span>
-                  <span class="cv-tag">Jupyter</span>
-                  <span class="cv-tag">Linux</span>
-                  <span class="cv-tag">Grafana</span>
-                  <span class="cv-tag">Prometheus & Nagios</span>
-                  <span class="cv-tag">SAP & Salesforce</span>
-                </div>
+                </dl>
               </section>
 
               <section class="cv-section">
                 <h2 class="cv-section__title">Education</h2>
 
-                <article class="cv-entry">
-                  <div class="cv-entry__top">
-                    <h3 class="cv-entry__role">MSc Science, Technology & Society</h3>
-                    <p class="cv-entry__dates">2026 - Present</p>
-                  </div>
+                <article class="cv-entry cv-entry--tight">
+                  <p class="cv-entry__dates">2026 - Present</p>
+                  <h3 class="cv-entry__role">MSc Science, Technology & Society</h3>
                   <p class="cv-entry__org">University of Athens · Athens, Greece</p>
-                  <p class="cv-entry__copy">
-                    Studying how technology meets people and society: the decisions behind what
-                    gets built, and the responsibility that comes with it.
-                  </p>
+                  <p class="cv-entry__copy">How technology meets people and society: the decisions behind what gets built, and the responsibility that comes with it.</p>
                 </article>
 
-                <article class="cv-entry">
-                  <div class="cv-entry__top">
-                    <h3 class="cv-entry__role">BSc Computer Science</h3>
-                    <p class="cv-entry__dates">2020 - 2024</p>
-                  </div>
+                <article class="cv-entry cv-entry--tight">
+                  <p class="cv-entry__dates">2020 - 2024</p>
+                  <h3 class="cv-entry__role">BSc Computer Science</h3>
                   <p class="cv-entry__org">University of London · United Kingdom</p>
-                  <p class="cv-entry__copy">
-                    First-Class Honours, minor in Artificial Intelligence & Machine Learning.
-                    Specialisation in Machine Learning and Neural Networks.
-                  </p>
+                  <p class="cv-entry__copy">First-Class Honours, minor in Artificial Intelligence & Machine Learning, specialising in Machine Learning and Neural Networks.</p>
                 </article>
 
-                <article class="cv-entry">
-                  <div class="cv-entry__top">
-                    <h3 class="cv-entry__role">Advanced High School Certificate - STEM</h3>
-                    <p class="cv-entry__dates">2014 - 2017</p>
-                  </div>
+                <article class="cv-entry cv-entry--tight">
+                  <p class="cv-entry__dates">2014 - 2017</p>
+                  <h3 class="cv-entry__role">Advanced High School Certificate, STEM</h3>
                   <p class="cv-entry__org">ZIMSEC · Zimbabwe</p>
                   <p class="cv-entry__copy">Mathematics, physics and chemistry. GPA 3.92.</p>
                 </article>
@@ -350,39 +302,41 @@
               <section class="cv-section">
                 <h2 class="cv-section__title">Certifications & awards</h2>
                 <ul class="cv-list">
-                  <li>AI in Action <b>Forage / Vista Equity Partners</b></li>
-                  <li>József Váradi Scholarship <b>2020</b></li>
-                  <li>Presidential STEM Scholarship <b>2018 - 2020</b></li>
-                  <li>Greek Language Certificate <b>University of Athens</b></li>
+                  <li>
+                    <span>AI in Action</span>
+                    <b>Forage</b>
+                  </li>
+                  <li>
+                    <span>József Váradi Scholarship</span>
+                    <b>2020</b>
+                  </li>
+                  <li>
+                    <span>Presidential STEM Scholarship</span>
+                    <b>2018 - 2020</b>
+                  </li>
+                  <li>
+                    <span>Greek Language Certificate</span>
+                    <b>UoA</b>
+                  </li>
                 </ul>
               </section>
 
               <section class="cv-section">
                 <h2 class="cv-section__title">Languages</h2>
                 <ul class="cv-list">
-                  <li>English <b>Fluent - mother tongue</b></li>
-                  <li>Greek <b>Intermediate</b></li>
+                  <li>
+                    <span>English</span>
+                    <b>Fluent, mother tongue</b>
+                  </li>
+                  <li>
+                    <span>Greek</span>
+                    <b>Intermediate</b>
+                  </li>
                 </ul>
               </section>
 
-            </div>
+            </aside>
           </div>
-
-          <!-- ------------------------------ facts ---------------------------- -->
-          <dl class="cv-facts">
-            <div>
-              <dt>Availability</dt>
-              <dd>14 days notice period</dd>
-            </div>
-            <div>
-              <dt>Work permits</dt>
-              <dd>Greece, EU remote</dd>
-            </div>
-            <div>
-              <dt>Relocation</dt>
-              <dd>Open, with sponsorship</dd>
-            </div>
-          </dl>
         </article>
       </div>
     </section>
