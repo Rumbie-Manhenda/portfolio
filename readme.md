@@ -1,4 +1,4 @@
-# Patricia Manhenda — portfolio
+# Patricia Manhenda - portfolio
 
 This is my personal site: five hand-written pages (home, projects, about, cover letter,
 and the CV itself) and a small Node/Express backend that serves them and emails the two
@@ -112,7 +112,7 @@ portfolio/
 ├─ reveal.js        # scroll reveal - generic, reads the theme's motion tokens
 ├─ assets/          # images, generated project covers, video
 │  └─ docs/         # resume_patricia_manhenda_de.pdf - rendered from cv.html;
-│                   # cv-previous-2024.pdf - the earlier CV, kept for reference
+│               
 ├─ server/
 │  ├─ index.js      # entry point (npm start)
 │  ├─ app.js        # builds the Express app: headers, CORS, routes, static site
