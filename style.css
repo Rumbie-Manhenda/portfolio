@@ -30,6 +30,11 @@
   animation:kiln-drip 60s linear infinite;
 }
 
+a {
+  color: rgb(197, 103, 3);
+  font-weight: bold;
+}
+a:hover{transform:translateY(-4px);color: rgb(0, 0, 3)}
 /* --------------------------------------------------------------------------
    2. Shell + section rhythm
    -------------------------------------------------------------------------- */
