@@ -137,14 +137,19 @@
    * the status area.
    * ------------------------------------------------------------------ */
 
-  /** Build the once-per-page sender from the settings in api-config.js. */
+  /**
+   * Build the once-per-page sender from the settings in api-config.js.
+   * Returns { send, warmUp, warmService }, or null when form-delivery.js is
+   * missing.
+   */
   function createSender() {
     if (!window.PortfolioDelivery) return null;
 
     return window.PortfolioDelivery.createSender({
       api: window.PORTFOLIO_API,
       service: window.PORTFOLIO_FORM_ENDPOINT,
-      protocol: window.location.protocol
+      protocol: window.location.protocol,
+      host: window.location.hostname
     });
   }
 
@@ -182,16 +187,31 @@
     var forms = document.querySelectorAll('form[data-endpoint]');
     if (!forms.length) return;
 
-    var send = createSender();
-    if (!send) {
+    var delivery = createSender();
+    if (!delivery) {
       console.error('form-delivery.js is missing, so the forms cannot send.');
       return;
     }
 
+    // Decide the route while the visitor is still reading: by the time they
+    // press send, a static host no longer pays for a doomed POST to an API it
+    // does not run. It is a same-origin request, so visitors who never touch
+    // the form cost nothing and contact nobody else.
+    delivery.warmUp();
+
     forms.forEach(function (form) {
       var submit = form.querySelector('button[type="submit"]');
 
-      form.addEventListener('input', function () { clearStatus(form); });
+      // The moment they start filling it in, open the mail service's
+      // connection. The DNS lookup and TLS handshake then happen while they
+      // type, not between the click and the send. Throttled inside, so this
+      // is safe to call on every keystroke.
+      form.addEventListener('focusin', function () { delivery.warmService(); });
+
+      form.addEventListener('input', function () {
+        clearStatus(form);
+        delivery.warmService();
+      });
 
       form.addEventListener('submit', function (event) {
         event.preventDefault();
@@ -206,7 +226,7 @@
         if (submit) submit.disabled = true;
         setStatus(form, 'pending', 'Sending…');
 
-        send(form.dataset.endpoint, new FormData(form))
+        delivery.send(form.dataset.endpoint, new FormData(form))
           .then(function (result) {
             if (!result.ok) {
               var failure = new Error(result.body || 'Request failed');

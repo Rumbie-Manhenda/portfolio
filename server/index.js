@@ -29,7 +29,15 @@ const server = app.listen(config.port, () => {
 
 function shutdown(signal) {
   console.log(`\nReceived ${signal}, shutting down.`);
+
+  // The mail transport keeps authenticated SMTP connections open between
+  // messages; close them rather than leaving the process waiting on them.
+  if (transport && typeof transport.close === 'function') transport.close();
+
   server.close(() => process.exit(0));
+
+  // Do not let an idle keep-alive connection hold the shutdown open.
+  setTimeout(() => process.exit(0), 3000).unref();
 }
 
 process.on('SIGINT', () => shutdown('SIGINT'));

@@ -46,6 +46,11 @@ async function withServer(transport, fn, overrides) {
   try {
     return await fn(base);
   } finally {
+    // fetch keeps its socket alive, and close() waits for idle connections,
+    // which would add the server's keep-alive timeout to every test.
+    if (typeof server.closeAllConnections === 'function') {
+      server.closeAllConnections();
+    }
     await new Promise((resolve) => server.close(resolve));
   }
 }

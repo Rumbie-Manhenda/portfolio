@@ -212,14 +212,14 @@ test('createSender resolves the API base once and posts to the right path', asyn
     { status: 200, body: JSON.stringify({ success: 'true' }) },
   ]);
 
-  const send = delivery.createSender({
+  const sender = delivery.createSender({
     api: 'https://api.example.com/',
     service: SERVICE,
     protocol: 'https:',
     fetchImpl: fetchStub,
   });
 
-  const result = await send('/submit_rec', [
+  const result = await sender.send('/submit_rec', [
     ['name_rec', 'Jane Doe'],
     ['email_rec', 'jane@example.com'],
     ['message_rec', 'Thorough and quick.'],
@@ -238,14 +238,246 @@ test('createSender resolves the API base once and posts to the right path', asyn
 test('createSender posts to the page origin when no API is configured', async () => {
   const fetchStub = stubFetch([{ status: 200, body: 'Thank you.' }]);
 
-  const send = delivery.createSender({
+  const sender = delivery.createSender({
     api: '',
     service: '',
     protocol: 'https:',
     fetchImpl: fetchStub,
   });
 
-  await send('/submit', [['email', 'a@b.com'], ['message', 'hi']]);
+  await sender.send('/submit', [['email', 'a@b.com'], ['message', 'hi']]);
 
   assert.equal(fetchStub.calls[0].url, '/submit');
+});
+
+test('the API body is posted urlencoded, so no multipart read is needed', async () => {
+  const fetchStub = stubFetch([{ status: 200, body: 'Thank you.' }]);
+
+  await delivery.send(settingsFor(fetchStub), '/submit', [
+    ['email', 'with space@example.com'],
+    ['message', 'a & b = c'],
+  ]);
+
+  const sent = fetchStub.calls[0].init;
+  assert.equal(sent.headers['Content-Type'], 'application/x-www-form-urlencoded');
+  assert.equal(
+    sent.body,
+    'email=with%20space%40example.com&message=a%20%26%20b%20%3D%20c'
+  );
+});
+
+test('isStaticHost spots file-only hosts and leaves real hosts alone', () => {
+  assert.equal(delivery.isStaticHost('rumbie-manhenda.github.io'), true);
+  assert.equal(delivery.isStaticHost('my-site.netlify.app'), true);
+  assert.equal(delivery.isStaticHost('SOMETHING.Pages.dev'), true);
+
+  assert.equal(delivery.isStaticHost('patriciamanhenda.com'), false);
+  assert.equal(delivery.isStaticHost('localhost'), false);
+  assert.equal(delivery.isStaticHost(''), false);
+  assert.equal(delivery.isStaticHost(undefined), false);
+});
+
+test('serviceOrigin pulls the origin out of the endpoint, or gives up', () => {
+  assert.equal(delivery.serviceOrigin(SERVICE), 'https://formsubmit.co');
+  assert.equal(delivery.serviceOrigin(''), '');
+  assert.equal(delivery.serviceOrigin('/ajax/nope'), '');
+});
+
+test('probeApi answers available, missing or unknown without throwing', async () => {
+  assert.equal(
+    await delivery.probeApi({
+      apiBase: '',
+      host: 'rumbie-manhenda.github.io',
+      fetchImpl: stubFetch([{ status: 200, body: '{}' }]),
+    }),
+    'missing',
+    'a known static host is answered without any request at all'
+  );
+
+  assert.equal(
+    await delivery.probeApi({
+      apiBase: 'https://api.example.com',
+      host: 'api.example.com',
+      fetchImpl: stubFetch([{ status: 200, body: '{"status":"ok"}' }]),
+    }),
+    'available'
+  );
+
+  assert.equal(
+    await delivery.probeApi({
+      apiBase: '',
+      host: 'example.com',
+      fetchImpl: stubFetch([{ status: 404, body: 'Not found' }]),
+    }),
+    'missing'
+  );
+
+  assert.equal(
+    await delivery.probeApi({
+      apiBase: '',
+      host: 'example.com',
+      fetchImpl: stubFetch([{ status: 500, body: 'boom' }]),
+    }),
+    'unknown'
+  );
+
+  assert.equal(
+    await delivery.probeApi({
+      apiBase: '',
+      host: 'example.com',
+      fetchImpl: stubFetch([new TypeError('Failed to fetch')]),
+    }),
+    'unknown'
+  );
+});
+
+test('a probe that finds no API sends the next submission straight to the service', async () => {
+  const fetchStub = stubFetch([
+    { status: 404, body: 'Not found' }, // the /health probe
+    { status: 200, body: JSON.stringify({ success: 'true' }) }, // the service
+  ]);
+
+  const sender = delivery.createSender({
+    api: '',
+    service: SERVICE,
+    protocol: 'https:',
+    host: 'example.com',
+    fetchImpl: fetchStub,
+  });
+
+  assert.equal(await sender.warmUp(), 'missing');
+
+  const result = await sender.send('/submit', [
+    ['email', 'a@b.com'],
+    ['message', 'hi'],
+  ]);
+
+  assert.equal(result.ok, true);
+  // probe, then the service — the doomed POST to /submit never happens.
+  assert.equal(fetchStub.calls.length, 2);
+  assert.equal(fetchStub.calls[1].url, SERVICE);
+});
+
+test('an API that answers is remembered, so later submissions skip the probe', async () => {
+  const fetchStub = stubFetch([
+    { status: 200, body: '{"status":"ok"}' }, // the /health probe
+    { status: 200, body: 'Thank you.' }, // the submission
+  ]);
+
+  const sender = delivery.createSender({
+    api: 'https://api.example.com',
+    service: SERVICE,
+    protocol: 'https:',
+    host: 'api.example.com',
+    fetchImpl: fetchStub,
+  });
+
+  assert.equal(await sender.warmUp(), 'available');
+
+  const result = await sender.send('/submit', [
+    ['email', 'a@b.com'],
+    ['message', 'hi'],
+  ]);
+
+  assert.equal(result.ok, true);
+  assert.equal(fetchStub.calls.length, 2);
+  assert.equal(fetchStub.calls[1].url, 'https://api.example.com/submit');
+});
+
+test('a 404 on the first submission teaches the route for the next one', async () => {
+  const fetchStub = stubFetch([
+    { status: 404, body: 'Not found' }, // first /submit — nothing there
+    { status: 200, body: JSON.stringify({ success: 'true' }) }, // the service
+    { status: 200, body: JSON.stringify({ success: 'true' }) }, // second: service only
+  ]);
+
+  const sender = delivery.createSender({
+    api: '',
+    service: SERVICE,
+    protocol: 'https:',
+    fetchImpl: fetchStub,
+  });
+
+  const first = await sender.send('/submit', [['email', 'a@b.com'], ['message', 'one']]);
+  assert.equal(first.ok, true);
+  assert.equal(fetchStub.calls.length, 2);
+
+  const second = await sender.send('/submit', [['email', 'a@b.com'], ['message', 'two']]);
+  assert.equal(second.ok, true);
+  assert.equal(fetchStub.calls.length, 3, 'no third call to the missing API');
+  assert.equal(fetchStub.calls[2].url, SERVICE);
+});
+
+test('a network failure leaves the route undecided, so the API is retried later', async () => {
+  const fetchStub = stubFetch([
+    new TypeError('Failed to fetch'), // the API is unreachable
+    { status: 200, body: JSON.stringify({ success: 'true' }) }, // the service
+    { status: 200, body: 'Thank you.' }, // the API comes back
+  ]);
+
+  const sender = delivery.createSender({
+    api: '',
+    service: SERVICE,
+    protocol: 'https:',
+    fetchImpl: fetchStub,
+  });
+
+  await sender.send('/submit', [['email', 'a@b.com'], ['message', 'one']]);
+  assert.equal(sender.route.apiStatus, 'unknown');
+
+  const result = await sender.send('/submit', [['email', 'a@b.com'], ['message', 'two']]);
+  assert.equal(result.ok, true);
+  assert.equal(result.body, 'Thank you.');
+  assert.equal(fetchStub.calls[2].url, '/submit');
+});
+
+test('warmUp probes the API only once, however often it is called', async () => {
+  const fetchStub = stubFetch([{ status: 404, body: 'Not found' }]);
+
+  const sender = delivery.createSender({
+    api: '',
+    service: SERVICE,
+    protocol: 'https:',
+    host: 'example.com',
+    fetchImpl: fetchStub,
+  });
+
+  await Promise.all([sender.warmUp(), sender.warmUp(), sender.warmUp()]);
+
+  assert.equal(fetchStub.calls.length, 1);
+  assert.equal(fetchStub.calls[0].url, '/health');
+});
+
+test('warmUp alone touches nobody outside the page origin', async () => {
+  const fetchStub = stubFetch([{ status: 200, body: '{"status":"ok"}' }]);
+
+  const sender = delivery.createSender({
+    api: 'https://api.example.com',
+    service: SERVICE,
+    protocol: 'https:',
+    host: 'api.example.com',
+    fetchImpl: fetchStub,
+  });
+
+  await sender.warmUp();
+
+  assert.equal(fetchStub.calls.length, 1);
+  assert.equal(fetchStub.calls[0].url, 'https://api.example.com/health');
+});
+
+test('warmService does nothing outside the browser, and never throws', () => {
+  const fetchStub = stubFetch([{ status: 200, body: JSON.stringify({ success: 'true' }) }]);
+
+  const sender = delivery.createSender({
+    api: '',
+    service: SERVICE,
+    protocol: 'https:',
+    fetchImpl: fetchStub,
+  });
+
+  assert.doesNotThrow(() => {
+    sender.warmService();
+    sender.warmService();
+  });
+  assert.equal(fetchStub.calls.length, 0);
 });

@@ -40,6 +40,22 @@ test('createTransport builds a transporter when settings are complete', () => {
   transport.close();
 });
 
+test('createTransport pools connections so a send does not re-authenticate', () => {
+  const transport = mailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    user: 'me@gmail.com',
+    pass: 'app-password',
+  });
+
+  assert.equal(transport.options.pool, true);
+  assert.ok(transport.options.maxConnections >= 1);
+  assert.ok(transport.options.maxMessages >= 1);
+
+  transport.close();
+});
+
 test('contactMessage addresses the owner and replies to the visitor', async () => {
   const transport = nodemailer.createTransport({ jsonTransport: true });
   const message = mailer.contactMessage(CONFIG, {

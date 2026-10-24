@@ -17,12 +17,13 @@ brought to life by two small scripts - no framework, no build step.
 
 If they fill in a form, here is what happens:
 
-1. `main.js` catches the submit, builds a `FormData` and hands it to `form-delivery.js`
-   together with the path in the form's `data-endpoint` attribute - `/submit`
-   (email + message) or `/submit_rec` (name + email + recommendation).
-2. `form-delivery.js` posts it to the Express API. `multer` parses the multipart body,
-   `rateLimit.js` checks the sender has not been spamming, and `validate.js` trims the
-   input, strips control characters and checks the lengths.
+1. `main.js` catches the submit, reads the form and hands the fields to
+   `form-delivery.js` together with the path in the form's `data-endpoint` attribute -
+   `/submit` (email + message) or `/submit_rec` (name + email + recommendation).
+2. `form-delivery.js` posts it to the Express API as
+   `application/x-www-form-urlencoded`. `rateLimit.js` checks the sender has not been
+   spamming, and `validate.js` trims the input, strips control characters and checks the
+   lengths.
 3. `mailer.js` composes a plain-text email to me with `replyTo` set to whoever wrote in,
    and hands it to `nodemailer`.
 4. The response comes back as a sentence, and `main.js` writes it into the form's status
@@ -33,6 +34,13 @@ only files - so a POST to `/submit` there is a 404. `form-delivery.js` notices a
 re-sends the same submission to the form service named in `api-config.js`, which emails
 it straight to me. Same form, same fields, same reply to the visitor; two routes, so it
 works both on my own machine and on the published site.
+
+That fallback would otherwise cost a wasted round trip: post, wait for the 404, post
+again. So the page decides first. While the visitor is still reading, `form-delivery.js`
+asks `GET /health` once, in the background; on a host it recognises as file-only
+(`github.io`, `netlify.app`, `vercel.app`, `pages.dev` and a few more) it works it out
+without asking at all. By the time anyone presses send, the route is already chosen and a
+submission takes one round trip, not two.
 
 Because the same Express process serves both the site and the API, the pages post to
 their own origin. Nothing has to be configured in the browser. (Open a page straight
@@ -76,9 +84,19 @@ database to keep alive. An email lands where I already look, includes `replyTo`,
 turns "reply" into a single click. Fewer moving parts, less to maintain, and no store of
 other people's messages to look after.
 
-**Multer, but also urlencoded.** Browsers send `FormData` as multipart, so the routes
-parse that. They also parse plain form posts - so if JavaScript fails or is disabled, the
-form still works as an ordinary HTML post. Same validation, same email.
+**A pooled SMTP connection.** `mailer.js` builds the transport with `pool: true`, so a
+message reuses an authenticated connection instead of paying for a fresh TCP connection,
+TLS handshake and `AUTH` exchange every time. On a hosted mail provider that handshake is
+most of the delay between a visitor pressing send and the message being accepted; paying
+it once per connection rather than once per message is the biggest single saving on the
+server side.
+
+**Urlencoded, but also multipart.** The pages post `application/x-www-form-urlencoded`:
+the body is smaller, the content type is CORS-safelisted (so there is no preflight
+request), and the server parses it with the body parser it already has rather than
+decoding a multipart stream. The routes still accept multipart, and still accept a plain
+no-JavaScript form post, so the form keeps working when the script is missing or broken.
+Same validation, same email either way.
 
 **Validation, rate limiting and a static guard.** These are small files doing one job
 each, because a public form is the only place a stranger can push data into my server.
@@ -107,7 +125,7 @@ portfolio/
 ├─ style.css        # components, built only on those tokens
 ├─ cv.css           # the CV sheet, and its print stylesheet
 ├─ main.js          # nav drawer, skill bars, counters, footer year, form wiring
-├─ form-delivery.js # chooses the form's route (API, then the service) and posts
+├─ form-delivery.js # picks the fastest route that can deliver, then posts
 ├─ api-config.js    # the one place the forms' API URL and fallback are set
 ├─ reveal.js        # scroll reveal - generic, reads the theme's motion tokens
 ├─ assets/          # images, generated project covers, video
@@ -119,7 +137,7 @@ portfolio/
 │  ├─ config.js     # reads .env / environment into one settings object
 │  ├─ loadEnv.js    # tiny dependency-free .env reader
 │  ├─ validate.js   # form input checking
-│  ├─ mailer.js     # nodemailer transport + message templates
+│  ├─ mailer.js     # pooled nodemailer transport + message templates
 │  ├─ rateLimit.js  # anti-spam limiter
 │  ├─ staticGuard.js# blocks source/secret files from being served
 │  └─ routes/contact.js            # POST /submit and POST /submit_rec
@@ -196,6 +214,12 @@ root, and `/gitkey`, `/package.json` and `/server/index.js` all 404.
 the API's own answer is kept, a 404/405/502/503 or an unreachable host falls through to
 the service, the recommendation fields are renamed for the service, and a 400 is never
 retried.
+
+It also pins the speed work down, because those are the parts that would quietly rot: the
+probe's three answers, that a decided route skips the doomed POST entirely, that a 404 on
+the first submission is remembered for the next one, that a *network* failure leaves the
+route undecided rather than wrongly writing the API off, and that warming the mail
+service's connection is inert outside the browser.
 
 ## Deploying
 
